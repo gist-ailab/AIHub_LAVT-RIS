@@ -61,9 +61,11 @@ class args:
     mha = ''
     fusion_drop = 0.0
 
-args.model = 'lavt_one_xlm'
+# args.model = 'lavt_one_xlm'
+args.model = 'lavt_one'
 args.ck_bert = 'bert-base-uncased'
-single_model = segmentation.__dict__['lavt_one_xlm'](pretrained='', args=args)
+# single_model = segmentation.__dict__['lavt_one_xlm'](pretrained='', args=args)
+single_model = segmentation.__dict__['lavt_one'](pretrained='', args=args)
 single_model.to(device)
 # model_class = BertModel
 # single_bert_model = model_class.from_pretrained('bert-base-uncased')

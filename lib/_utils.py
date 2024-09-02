@@ -36,6 +36,7 @@ class _LAVTOneSimpleDecode(nn.Module):
         super(_LAVTOneSimpleDecode, self).__init__()
         self.backbone = backbone
         self.classifier = classifier
+        self.args = args
         if args.model == 'lavt_one':
             self.text_encoder = BertModel.from_pretrained(args.ck_bert)
         elif args.model == 'lavt_one_xlm':
@@ -47,7 +48,14 @@ class _LAVTOneSimpleDecode(nn.Module):
     def forward(self, x, text, l_mask):
         input_shape = x.shape[-2:]
         ### language inference ###
-        l_feats = self.text_encoder(text, attention_mask=l_mask)[0]  # (6, 10, 768)
+        print("text shape: ", text.shape)
+        print("l_mask shape: ", l_mask.shape)
+        if self.args.model == 'lavt_one_xlm':
+            l_feats = self.text_encoder(text, attention_mask=l_mask, output_hidden_states=True,)  # (6, 10, 768)
+            l_feats = l_feats.hidden_states[1:][-1]
+        else:
+            l_feats = self.text_encoder(text, attention_mask=l_mask)[0]  # (6, 10, 768)
+
         print('l_feats:', l_feats.shape)
         l_feats = l_feats.permute(0, 2, 1)  # (B, 768, N_l) to make Conv1d happy
         l_mask = l_mask.unsqueeze(dim=-1)  # (batch, N_l, 1)
