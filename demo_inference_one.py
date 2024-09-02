@@ -5,6 +5,9 @@ sentence = 'middle guy'
 weights = './checkpoints/refcoco.pth'
 device = 'cuda:0'
 
+import os
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
 # pre-process the input image
 from PIL import Image
 import torchvision.transforms as T
@@ -26,8 +29,11 @@ img = img.to(device)  # for inference (input)
 
 # pre-process the raw sentence
 from bert.tokenization_bert import BertTokenizer
+from transformers import AutoTokenizer, AutoModelForMaskedLM
+
 import torch
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+# tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+tokenizer = AutoTokenizer.from_pretrained('xlm-roberta-base')
 sentence_tokenized = tokenizer.encode(text=sentence, add_special_tokens=True)
 sentence_tokenized = sentence_tokenized[:20]  # if the sentence is longer than 20, then this truncates it to 20 words
 # pad the tokenized sentence
@@ -55,25 +61,29 @@ class args:
     mha = ''
     fusion_drop = 0.0
 
-
-single_model = segmentation.__dict__['lavt'](pretrained='', args=args)
+args.model = 'lavt_one_xlm'
+args.ck_bert = 'bert-base-uncased'
+single_model = segmentation.__dict__['lavt_one_xlm'](pretrained='', args=args)
 single_model.to(device)
-model_class = BertModel
-single_bert_model = model_class.from_pretrained('bert-base-uncased')
-single_bert_model.pooler = None
+# model_class = BertModel
+# single_bert_model = model_class.from_pretrained('bert-base-uncased')
+# single_bert_model = AutoModelForMaskedLM.from_pretrained('xlm-roberta-base')
+single_bert_model = None
+# single_bert_model.pooler = None
 
 checkpoint = torch.load(weights, map_location='cpu')
-single_bert_model.load_state_dict(checkpoint['bert_model'])
-single_model.load_state_dict(checkpoint['model'])
+# single_bert_model.load_state_dict(checkpoint['bert_model'])
+# single_model.load_state_dict(checkpoint['model'])
 model = single_model.to(device)
-bert_model = single_bert_model.to(device)
+# bert_model = single_bert_model.to(device)
 
 
 # inference
 import torch.nn.functional as F
-last_hidden_states = bert_model(padded_sent_toks, attention_mask=attention_mask)[0]
-embedding = last_hidden_states.permute(0, 2, 1)
-output = model(img, embedding, l_mask=attention_mask.unsqueeze(-1))
+# last_hidden_states = bert_model(padded_sent_toks, attention_mask=attention_mask)[0]
+# embedding = last_hidden_states.permute(0, 2, 1)
+# output = model(img, embedding, l_mask=attention_mask.unsqueeze(-1))
+output = model(img, padded_sent_toks, l_mask=attention_mask)
 output = output.argmax(1, keepdim=True)  # (1, 1, 480, 480)
 output = F.interpolate(output.float(), (original_h, original_w))  # 'nearest'; resize to the original image size
 output = output.squeeze()  # (orig_h, orig_w)

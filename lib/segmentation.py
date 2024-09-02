@@ -4,7 +4,7 @@ from .mask_predictor import SimpleDecoding
 from .backbone import MultiModalSwinTransformer
 from ._utils import LAVT, LAVTOne
 
-__all__ = ['lavt', 'lavt_one']
+__all__ = ['lavt', 'lavt_one', 'lavt_one_xlm']
 
 
 # LAVT
@@ -140,4 +140,11 @@ def _load_model_lavt_one(pretrained, args):
 
 
 def lavt_one(pretrained='', args=None):
+    return _load_model_lavt_one(pretrained, args)
+
+
+###############################################
+# LAVT One XLM: put XLM-RoBERTa inside the overall model #
+###############################################
+def lavt_one_xlm(pretrained='', args=None):
     return _load_model_lavt_one(pretrained, args)

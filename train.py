@@ -22,6 +22,9 @@ import torch.nn.functional as F
 import gc
 from collections import OrderedDict
 
+import os
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
 
 def get_dataset(image_set, transform, args):
     from data.dataset_refer_bert import ReferDataset
@@ -204,7 +207,7 @@ def main(args):
     model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.local_rank], find_unused_parameters=True)
     single_model = model.module
 
-    if args.model != 'lavt_one':
+    if args.model != 'lavt_one' and args.model != 'lavt_one_xlm':
         model_class = BertModel
         bert_model = model_class.from_pretrained(args.ck_bert)
         bert_model.pooler = None  # a work-around for a bug in Transformers = 3.0.2 that appears for DistributedDataParallel
@@ -220,7 +223,7 @@ def main(args):
     if args.resume:
         checkpoint = torch.load(args.resume, map_location='cpu')
         single_model.load_state_dict(checkpoint['model'])
-        if args.model != 'lavt_one':
+        if args.model != 'lavt_one' and args.model != 'lavt_one_xlm':
             single_bert_model.load_state_dict(checkpoint['bert_model'])
 
     # parameters to optimize
@@ -232,7 +235,7 @@ def main(args):
         else:
             backbone_decay.append(m)
 
-    if args.model != 'lavt_one':
+    if args.model != 'lavt_one' and args.model != 'lavt_one_xlm':
         params_to_optimize = [
             {'params': backbone_no_decay, 'weight_decay': 0.0},
             {'params': backbone_decay},
@@ -240,6 +243,17 @@ def main(args):
             # the following are the parameters of bert
             {"params": reduce(operator.concat,
                               [[p for p in single_bert_model.encoder.layer[i].parameters()
+                                if p.requires_grad] for i in range(10)])},
+        ]
+    elif args.model == 'lavt_one_xlm':
+        print(single_model.text_encoder)
+        params_to_optimize = [
+            {'params': backbone_no_decay, 'weight_decay': 0.0},
+            {'params': backbone_decay},
+            {"params": [p for p in single_model.classifier.parameters() if p.requires_grad]},
+            # the following are the parameters of bert
+            {"params": reduce(operator.concat,
+                              [[p for p in single_model.text_encoder.roberta.encoder.layer[i].parameters()
                                 if p.requires_grad] for i in range(10)])},
         ]
     else:

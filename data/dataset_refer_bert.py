@@ -10,6 +10,7 @@ import torchvision.transforms.functional as TF
 import random
 
 from bert.tokenization_bert import BertTokenizer
+from transformers import AutoTokenizer
 
 import h5py
 from refer.refer import REFER
@@ -47,7 +48,10 @@ class ReferDataset(data.Dataset):
 
         self.input_ids = []
         self.attention_masks = []
-        self.tokenizer = BertTokenizer.from_pretrained(args.bert_tokenizer)
+        if args.model == 'lavt_one_xlm':
+            self.tokenizer = AutoTokenizer.from_pretrained('xlm-roberta-base')
+        else:
+            self.tokenizer = BertTokenizer.from_pretrained(args.bert_tokenizer)
 
         self.eval_mode = eval_mode
         # if we are testing on a dataset, test all sentences of an object;
