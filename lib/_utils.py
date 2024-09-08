@@ -48,8 +48,8 @@ class _LAVTOneSimpleDecode(nn.Module):
     def forward(self, x, text, l_mask):
         input_shape = x.shape[-2:]
         ### language inference ###
-        print("text shape: ", text.shape)
-        print("l_mask shape: ", l_mask.shape)
+        # print("text shape: ", text.shape)
+        # print("l_mask shape: ", l_mask.shape)
         if self.args.model == 'lavt_one_xlm':
             l_feats = self.text_encoder(text, attention_mask=l_mask, output_hidden_states=True,)  # (6, 10, 768)
             l_feats = l_feats.hidden_states[1:][-1]
