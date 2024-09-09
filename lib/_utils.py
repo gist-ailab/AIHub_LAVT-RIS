@@ -52,7 +52,15 @@ class _LAVTOneSimpleDecode(nn.Module):
         # print("l_mask shape: ", l_mask.shape)
         if self.args.model == 'lavt_one_xlm':
             l_feats = self.text_encoder(text, attention_mask=l_mask, output_hidden_states=True,)  # (6, 10, 768)
-            l_feats = l_feats.hidden_states[1:][-1]
+            # print(l_feats.logits.size())
+            # print(len(l_feats))
+            # print(l_feats.hidden_states[0].size())
+            # print(l_feats.hidden_states[1:])
+            # print(l_feats.hidden_states[1:][-1].size())
+            # print('=========================')
+            # l_feats = l_feats.hidden_states[1:][-1]
+            l_feats = l_feats.hidden_states[0]
+
         else:
             l_feats = self.text_encoder(text, attention_mask=l_mask)[0]  # (6, 10, 768)
 

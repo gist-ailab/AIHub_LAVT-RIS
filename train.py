@@ -247,6 +247,7 @@ def main(args):
         ]
     elif args.model == 'lavt_one_xlm':
         print(single_model.text_encoder)
+        # time.sleep(1000)
         params_to_optimize = [
             {'params': backbone_no_decay, 'weight_decay': 0.0},
             {'params': backbone_decay},
@@ -257,6 +258,8 @@ def main(args):
                                 if p.requires_grad] for i in range(10)])},
         ]
     else:
+        print(single_model.text_encoder)
+        # time.sleep(1000)
         params_to_optimize = [
             {'params': backbone_no_decay, 'weight_decay': 0.0},
             {'params': backbone_decay},
