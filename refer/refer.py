@@ -52,6 +52,8 @@ class REFER:
             self.IMAGE_DIR = osp.join(data_root, 'images/mscoco/images/train2014')
         elif dataset == 'refclef':
             self.IMAGE_DIR = osp.join(data_root, 'images/saiapr_tc-12')
+        elif dataset in ['aihub_indoor', 'aihub_manufact']:
+            self.IMAGE_DIR = osp.join(data_root, 'images')
         else:
             print('No refer dataset is called [%s]' % dataset)
             sys.exit()
