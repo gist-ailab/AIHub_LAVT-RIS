@@ -23,6 +23,7 @@ showMask   - show mask of the referred object given ref
 """
 
 import sys
+import os
 import os.path as osp
 import json
 import pickle as pickle
@@ -53,10 +54,24 @@ class REFER:
         elif dataset == 'refclef':
             self.IMAGE_DIR = osp.join(data_root, 'images/saiapr_tc-12')
         elif dataset in ['aihub_indoor', 'aihub_manufact']:
-            self.IMAGE_DIR = osp.join(data_root, 'images')
+            self.IMAGE_DIR = osp.join(data_root, 'images/mscoco/images/train2014')
+            if dataset == 'aihub_indoor':
+                self.DATA_DIR = osp.join(data_root, 'refcoco')
+                print('Dataset preprocessing...')
+                print('Print list of AIHub Indoor dataset...')
+                aihub_indoor_image_path = '/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/indoor/images'
+                print(os.listdir(aihub_indoor_image_path))
+            elif dataset == 'aihub_manufact':
+                self.DATA_DIR = osp.join(data_root, 'refcocog')
+                print('Dataset preprocessing...')
+                print('Print list of AIHub Manufact dataset...')
+                aihub_manufact_image_path = '/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact/images'
+                print(os.listdir(aihub_manufact_image_path))
+            # self.IMAGE_DIR = osp.join(data_root, 'images')
         else:
             print('No refer dataset is called [%s]' % dataset)
             sys.exit()
+        self.dataset = dataset
 
         # load refs from data/dataset/refs(dataset).json
         tic = time.time()
@@ -64,7 +79,10 @@ class REFER:
         self.data = {}
         self.data['dataset'] = dataset
         f = open(ref_file, 'r')
-        self.data['refs'] = pickle.load(open(ref_file, 'rb'))
+        if dataset in ['aihub_indoor', 'aihub_manufact']:
+            self.data['refs'] = pickle.load(open(ref_file, 'rb'))[:10000]
+        else:
+            self.data['refs'] = pickle.load(open(ref_file, 'rb'))
 
         # load annotations from data/dataset/instances.json
         instances_file = osp.join(self.DATA_DIR, 'instances.json')
@@ -147,6 +165,13 @@ class REFER:
 
         if len(image_ids) == len(cat_ids) == len(ref_ids) == len(split) == 0:
             refs = self.data['refs']
+        elif self.dataset in ['aihub_indoor', 'aihub_manufact']:
+            if split == 'train':
+                refs = self.data['refs'][:8000]
+            elif split == 'val':
+                refs = self.data['refs'][8000:9000]
+            elif split == 'test':
+                refs = self.data['refs'][9000:]
         else:
             if not len(image_ids) == 0:
                 refs = [self.imgToRefs[image_id] for image_id in image_ids]
@@ -302,18 +327,18 @@ class REFER:
 
 
 if __name__ == '__main__':
-    refer = REFER(dataset='refcocog', splitBy='google')
+    refer = REFER(data_root='refer/data/', dataset='aihub_indoor', splitBy='google')
     ref_ids = refer.getRefIds()
 
     ref_ids = refer.getRefIds(split='train')
     print('There are %s training referred objects.' % len(ref_ids))
 
-    for ref_id in ref_ids:
-        ref = refer.loadRefs(ref_id)[0]
-        if len(ref['sentences']) < 2:
-            continue
-        print('The label is %s.' % refer.Cats[ref['category_id']])
-        plt.figure()
-        refer.showRef(ref, seg_box='box')
-        plt.show()
+    # for ref_id in ref_ids:
+    #     ref = refer.loadRefs(ref_id)[0]
+    #     if len(ref['sentences']) < 2:
+    #         continue
+    #     print('The label is %s.' % refer.Cats[ref['category_id']])
+    #     plt.figure()
+    #     refer.showRef(ref, seg_box='box')
+    #     plt.show()
 
