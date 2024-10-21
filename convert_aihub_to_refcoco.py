@@ -4,6 +4,7 @@ import pickle
 from datetime import datetime
 import glob
 import shutil
+import random
 
 MANUFACT_CATEGORIES = [
     {"supercategory": "도구 및 장비", "id": 1, "name": "가스디퓨저"},
@@ -411,6 +412,11 @@ INDOOR_CATEGORIES = [
     {"supercategory": "욕실용품", "id": 200, "name": "칫솔"}
 ]
 
+# 20241019 synthetic data error list
+manufact_error_list = [902, 910, 923, 945, 1029, 1076, 1120, 1145, 1148, 1158, 1165, 1167, 1273, 1333, 1713, 1737, 1762, 1820, 1824, 1913, 1950, 2078, 2092, 2149, 2156, 2187, 2257, 2308, 2321, 2346, 2398, 2474, 2544, 2558, 2607, 2619, 2652, 2656, 2696, 3277, 3364, 3369, 3372, 3459, 3502, 3541, 3585, 3654, 3685, 4165, 4198, 4199, 4219, 4345, 4395, 4410, 4719, 4780, 4832, 5419, 5460, 5580, 5606, 5868, 5908, 5968, 5994, 6003, 6181, 6304, 6336, 6378, 6401, 6405, 6496, 6509, 6529, 6535, 6655, 6659, 6800, 6839, 6908, 6917, 7046, 7105, 7128, 7317, 7355, 7417, 7803, 7823, 7885, 7888, 8158, 8168, 8175, 8271, 8294, 8396, 8410, 8501, 8525, 8944, 9046, 9204, 9249, 9303, 9360, 9421, 9443, 9489, 9528, 9662, 9689, 9742, 9769, 9861, 10056, 10490, 10532, 10534, 10612, 10676, 10691, 10877, 10895, 10899, 10978, 11146, 11151, 11210, 11237, 11273, 11440, 11445, 11449, 11700, 11724, 11785, 11982, 12073, 12170, 12292, 12356, 12865, 12904, 13384, 13520, 13925, 14000, 14210, 14283, 14314, 14348, 14378, 14411, 14460, 14472, 14529, 14602, 14603, 14620, 14626, 14651, 14656, 14658, 14677, 14703, 14732, 14740, 14758, 14768, 14771, 14780, 14790, 14815, 14821, 14832, 14850, 14857, 14901, 14907, 14912, 15126, 15133, 15159, 15160, 15189, 15199, 15204, 15234, 15242, 15274, 15290, 15295]
+indoor_error_list = [918, 927, 938, 957, 976, 1001, 1002, 1022, 1047, 1068, 1106, 1110, 1141, 1170, 1174, 1245, 1247, 1264, 1294, 1309, 1310, 1314, 1324, 1360, 1363, 1388, 1393, 1484, 1491, 1500, 1537, 1573, 1585, 1592, 1609, 2703, 2716, 2733, 2766, 2796, 2806, 2823, 2868, 2900, 2973, 2980, 2984, 2992, 2995, 3012, 3023, 3036, 3049, 3059, 3102, 3128, 3133, 3181, 3218, 3238, 3257, 3269, 3306, 3355, 3359, 3360, 3377, 3382, 3390, 3399, 3407, 3468, 3510, 3522, 3574, 3592, 4170, 4250, 4268, 4433, 4434, 4447, 4456, 4476, 4500, 4502, 4519, 4572, 4581, 4597, 4640, 4657, 4668, 4680, 4687, 4731, 4767, 4806, 4817, 4820, 4841, 4848, 4886, 4895, 4976, 4990, 5029, 5032, 5174, 5196, 5208, 5227, 5238, 5271, 5279, 5284, 5287, 5352, 5388, 5391, 5446, 5460, 5585, 5630, 5718, 5719, 5736, 5805, 5844, 5852, 5853, 5871, 5883, 5896, 5933, 5962, 5978, 6011, 6038, 6059, 6068, 6102, 6393, 6399, 6493, 6498, 6509, 6547, 6556, 6607, 6619, 6651, 6670, 6672, 6713, 6758, 6764, 6770, 6785, 6791, 6813, 6821, 6848, 6849, 6884, 6917, 6934, 6935, 6939, 6956, 6982, 7094, 7102, 7111, 7122, 7140, 7144, 7151, 7185]
+
+
 # Function to split annotations from multiple files and save as JSON and Pickle files
 def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vision_file, output_referring_file):
     # Prepare the COCO-style structure for vision annotations
@@ -437,9 +443,19 @@ def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vis
     image_id_counter = 0
 
     # Iterate through all groups
-    group_dir_list = glob.glob(os.path.join(input_base_dir_1, "*")) + glob.glob(os.path.join(input_base_dir_2, "group_*"))
-    # for group_dir in glob.glob(os.path.join(input_base_dir, "group_*")):
+    # group_dir_list = glob.glob(os.path.join(input_base_dir_1, "*")) + glob.glob(os.path.join(input_base_dir_2, "group_*"))
+    
+    # 20241019 Use only synthetic data
+    group_dir_list = glob.glob(os.path.join(input_base_dir_2, "*"))
+    error_list = ["{0:06d}".format(i) for i in manufact_error_list]
+    # error_list = ["{0:06d}".format(i) for i in indoor_error_list]
+
     for group_dir in group_dir_list:
+        
+        if group_dir.split("/")[-1] in error_list:
+            print("Skipping group: {}".format(group_dir.split("/")[-1]))
+            continue
+
         annotation_dir = os.path.join(group_dir, "annotation")
         image_dir = os.path.join(group_dir, "rgb")
         
@@ -486,13 +502,20 @@ def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vis
                     for i in range(len([ann['referring_expression']]))
                 ]
 
+                randint_for_split = random.randint(0, 9)
+                if randint_for_split == 8:
+                    split = "val"
+                elif randint_for_split == 9:
+                    split = "test"
+                else:
+                    split = "train"
                 referring_annotation = {
                     "ref_id": ref_id,
                     "category_id": ann['category_id'],
                     "image_id": image_id_counter,
                     "file_name": data['images']['file_name'],
                     "ann_id": ann['id'],
-                    "split": "train",  # Assuming train split, you can modify this
+                    "split": split,
                     "sentences": sentences,
                     "sent_ids": [i for i in range(len(sentences))]
                 }
@@ -511,15 +534,15 @@ def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vis
 
 
 if __name__ == "__main__":
-    input_dir_1 = "/SSDe/sangbeom_lee/실제 가공 데이터_1차/1.제조환경(실제이미지_가공샘플)_1"
-    input_dir_2 = "/SSDe/sangbeom_lee/실제 가공 데이터_1차/1.제조환경(실제이미지_가공샘플)_2"
-    output_vision_file = "/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact/instances.json"
-    output_referring_file = "/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact/refs.p"
+    input_dir_1 = "/SSDa/sangbeom_lee/제조_실제"
+    input_dir_2 = "/SSDa/sangbeom_lee/제조_가상"
+    output_vision_file = "/SSDa/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact/instances.json"
+    output_referring_file = "/SSDa/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact/refs.p"
 
-    # input_dir_1 = "/SSDe/sangbeom_lee/실제 가공 데이터_1차/1.가정환경(실제이미지_가공샘플)"
-    # input_dir_2 = "/SSDe/sangbeom_lee/실제 가공 데이터_1차/1.가정환경(실제이미지_가공샘플)_2"
-    # output_vision_file = "/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/indoor/instances.json"
-    # output_referring_file = "/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/indoor/refs.p"
+    # input_dir_1 = "/SSDa/sangbeom_lee/가정_실제"
+    # input_dir_2 = "/SSDa/sangbeom_lee/가정_가상"
+    # output_vision_file = "/SSDa/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/indoor/instances.json"
+    # output_referring_file = "/SSDa/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/indoor/refs.p"
 
     # convert_to_refcoco_format(input_dir, output_file)
     split_annotations_for_dataset(input_dir_1, input_dir_2, output_vision_file, output_referring_file)
