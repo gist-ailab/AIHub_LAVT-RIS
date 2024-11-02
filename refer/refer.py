@@ -53,23 +53,32 @@ class REFER:
             self.IMAGE_DIR = osp.join(data_root, 'images/mscoco/images/train2014')
         elif dataset == 'refclef':
             self.IMAGE_DIR = osp.join(data_root, 'images/saiapr_tc-12')
-        elif dataset in ['aihub_indoor', 'aihub_manufact']:
-            # self.IMAGE_DIR = osp.join(data_root, 'images/mscoco/images/train2014')
+        elif dataset in ['aihub_indoor', 'aihub_manufact', 'aihub_indoor_80']:
             if dataset == 'aihub_indoor':
                 self.DATA_DIR = osp.join(data_root, 'refcoco')
                 print('Dataset preprocessing...')
                 print('Print list of AIHub Indoor dataset...')
-                # aihub_indoor_image_path = '/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/indoor/images'
-                # print(os.listdir(aihub_indoor_image_path))
+                self.DATA_DIR = "refer/data/aihub_refcoco_format/indoor"
+                self.IMAGE_DIR = "refer/data/aihub_refcoco_format/indoor/images"
+                print('Dataset preprocessing...')
+                print('Print list of AIHub Indoor dataset...')
+                # print(os.listdir(self.IMAGE_DIR))
             elif dataset == 'aihub_manufact':
                 # self.DATA_DIR = osp.join(data_root, 'refcocog')
                 self.DATA_DIR = "refer/data/aihub_refcoco_format/manufact"
                 self.IMAGE_DIR = "refer/data/aihub_refcoco_format/manufact/images"
                 print('Dataset preprocessing...')
                 print('Print list of AIHub Manufact dataset...')
-                aihub_manufact_image_path = 'refer/data/aihub_refcoco_format/manufact/images'
-                # print(os.listdir(aihub_manufact_image_path))
-            # self.IMAGE_DIR = osp.join(data_root, 'images')
+                # print(os.listdir(self.IMAGE_DIR))
+            elif dataset == 'aihub_indoor_80':
+                self.DATA_DIR = osp.join(data_root, 'refcoco')
+                print('Dataset preprocessing...')
+                print('Print list of AIHub Indoor dataset...')
+                self.DATA_DIR = "refer/data/aihub_refcoco_format/indoor_80"
+                self.IMAGE_DIR = "refer/data/aihub_refcoco_format/indoor_80/images"
+                print('Dataset preprocessing...')
+                print('Print list of AIHub Indoor dataset...')
+                # print(os.listdir(self.IMAGE_DIR))
         else:
             print('No refer dataset is called [%s]' % dataset)
             sys.exit()
@@ -77,7 +86,7 @@ class REFER:
 
         # load refs from data/dataset/refs(dataset).json
         tic = time.time()
-        if dataset in ['aihub_indoor', 'aihub_manufact']:
+        if dataset in ['aihub_indoor', 'aihub_manufact', 'aihub_indoor_80']:
             ref_file = osp.join(self.DATA_DIR, 'refs.p')
         else:
             ref_file = osp.join(self.DATA_DIR, 'refs(' + splitBy + ').p')
@@ -312,7 +321,7 @@ class REFER:
         ann = self.refToAnn[ref['ref_id']]
         image = self.Imgs[ref['image_id']]
 
-        if self.dataset in ['aihub_indoor', 'aihub_manufact']:
+        if self.dataset in ['aihub_indoor', 'aihub_manufact', 'aihub_indoor_80']:
             rle = [ann['segmentation']]
         else:
             if type(ann['segmentation'][0]) == list:  # polygon
