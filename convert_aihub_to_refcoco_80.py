@@ -7,6 +7,7 @@ import shutil
 import random
 import logging
 from tqdm import tqdm
+import csv
 
 
 MANUFACT_CATEGORIES = [
@@ -421,7 +422,7 @@ INDOOR_CATEGORIES = [
 
 
 # Function to split annotations from multiple files and save as JSON and Pickle files
-def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vision_file, output_referring_file):
+def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vision_file, output_referring_file, csv_file_path):
     # Prepare the COCO-style structure for vision annotations
     vision_annotations = {
         "info": {
@@ -445,6 +446,14 @@ def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vis
     ref_id = 0
     image_id_counter = 0
 
+    # CSV 파일 로드하여 그룹 ID와 세트 매핑 딕셔너리 생성
+    group_split_dict = {}
+    with open(csv_file_path, mode='r', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            group_split_dict[row['group_id']] = row['set']  # 'train' 또는 'validation'
+
+
     # Iterate through all groups
     ann_list = glob.glob(os.path.join(input_base_dir_1, "*")) + glob.glob(os.path.join(input_base_dir_2, "*"))
     
@@ -453,7 +462,8 @@ def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vis
     # error_list = ["{0:06d}".format(i) for i in manufact_error_list]
     # error_list = ["{0:06d}".format(i) for i in indoor_error_list]
 
-    # error_file = open("mismatch_error.txt", 'w')
+    error_file = open("referring_error.txt", 'w')
+    error_file_vision = open("vision_error.txt", 'w')
 
     valid_num = 0
     train_num = 0
@@ -480,7 +490,21 @@ def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vis
         elif image_file.split('/')[-3] == '가상데이터':
             file_name = f"syn_{image_file.split('/')[-1]}"
         
+        group_id = '_'.join(file_name.split('_')[0:2])
         
+        # 그룹 ID를 사용하여 데이터 세트 할당
+        split = group_split_dict.get(group_id)
+        if split is None:
+            print(f"Group ID {group_id} not found in CSV. Skipping.")
+            continue
+        elif split == 'train':
+            train_num += 1
+        elif split == 'validation':
+            valid_num += 1
+        else:
+            print(f"Unexpected split value {split} for group ID {group_id}")
+            continue
+
         # Prepare vision annotation (COCO format)
         image_entry = {
             "file_name": file_name,
@@ -507,41 +531,45 @@ def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vis
                 }
                 # vision_annotations['annotations'].append(vision_annotation)
             except KeyError:
-                # print(annotation_file.split('/')[-3:])
-                # print("Error in annotation: ", ann)
+                print(annotation_file.split('/')[-3:])
+                print("Error in annotation: ", ann)
+                data = f"vision_annotation: {annotation_file.split('/')[-3:]}\n"
+                error_file_vision.write(data)
                 continue
 
             # Referring annotation format
             try:
                 sentences = [
-                    {"tokens": ann['token'], "raw": ann['referring_expression'], "sent_id": i, "sent": ann['referring_expression']}
+                    # {"tokens": ann['token'], "raw": ann['referring_expression'], "sent_id": i, "sent": ann['referring_expression']}
+                    {"raw": ann['referring_expression'], "sent_id": i, "sent": ann['referring_expression']}
                     for i in range(len([ann['referring_expression']]))
                 ]
             except KeyError:
                 data = f"referring_expression: {annotation_file.split('/')[-3:]}\n"
-                # print(data)
-                # error_file.write(data)
+                print(data)
+                error_file.write(data)
                 continue
 
             vision_annotations['annotations'].append(vision_annotation)
             valid_num += 1
 
-            randint_for_split = random.randint(0, 19)
-            # if randint_for_split == 8:
+            # randint_for_split = random.randint(0, 19)
+            # # if randint_for_split == 8:
+            # #     split = "val"
+            # # elif randint_for_split == 9:
+            # #     split = "test"
+            # # else:
+            # #     split = "train"
+            # if train_num >= 400000:
+            #     print("train is full!")
             #     split = "val"
-            # elif randint_for_split == 9:
-            #     split = "test"
             # else:
-            #     split = "train"
-            if train_num >= 400000:
-                print("train is full!")
-                split = "val"
-            else:
-                if randint_for_split == 9:
-                    split = "val"
-                else:
-                    split = "train"
-                    train_num += 1
+            #     if randint_for_split == 9:
+            #         split = "val"
+            #     else:
+            #         split = "train"
+            #         train_num += 1
+
             referring_annotation = {
                 "ref_id": ref_id,
                 "category_id": ann['category_id'],
@@ -589,13 +617,20 @@ if __name__ == "__main__":
     # output_referring_file = "/SSDa/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/indoor/refs.p"
 
     # 80 percent AIHub indoor 
-    input_dir_1 = "/SSDa/sangbeom_lee/22-39.가정환경/실제데이터/annotation"
-    input_dir_2 = "/SSDa/sangbeom_lee/22-39.가정환경/가상데이터/annotation"
-    output_vision_file = "/SSDa/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/indoor_80/instances.json"
-    output_referring_file = "/SSDa/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/indoor_80/refs.p"
+    # input_dir_1 = "/SSDa/sangbeom_lee/22-39.가정환경/실제데이터/annotation"
+    # input_dir_2 = "/SSDa/sangbeom_lee/22-39.가정환경/가상데이터/annotation"
+    # output_vision_file = "/SSDa/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/indoor_80/instances.json"
+    # output_referring_file = "/SSDa/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/indoor_80/refs.p"
+
+    # 80 percent AIHub manufact 
+    input_dir_1 = "/SSDe/sangbeom_lee/22-38.제조환경/실제데이터/annotation"
+    input_dir_2 = "/SSDe/sangbeom_lee/22-38.제조환경/가상데이터/annotation"
+    output_vision_file = "/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact_80/instances.json"
+    output_referring_file = "/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact_80/refs.p"
+    csv_file_path = "/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact_80/group_split.csv"
 
     # convert_to_refcoco_format(input_dir, output_file)
-    split_annotations_for_dataset(input_dir_1, input_dir_2, output_vision_file, output_referring_file)
+    split_annotations_for_dataset(input_dir_1, input_dir_2, output_vision_file, output_referring_file, csv_file_path)
     
     # import json
 
