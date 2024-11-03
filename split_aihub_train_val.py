@@ -74,19 +74,19 @@ def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_csv
 if __name__ == "__main__":
 
     # 80 percent AIHub indoor 
-    # input_dir_1 = "/SSDa/sangbeom_lee/22-39.가정환경/실제데이터/annotation"
-    # input_dir_2 = "/SSDa/sangbeom_lee/22-39.가정환경/가상데이터/annotation"
+    input_dir_1 = "/SSDa/sangbeom_lee/22-39.가정환경/실제데이터/annotation"
+    input_dir_2 = "/SSDa/sangbeom_lee/22-39.가정환경/가상데이터/annotation"
     # output_vision_file = "/SSDa/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/indoor_80/instances.json"
     # output_referring_file = "/SSDa/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/indoor_80/refs.p"
-    # output_csv_file = "/SSDa/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/indoor_80/group_split.csv"
+    output_csv_file = "/SSDa/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/indoor_80/group_split.csv"
 
 
     # 80 percent AIHub manufact 
-    input_dir_1 = "/SSDe/sangbeom_lee/22-38.제조환경/실제데이터/annotation"
-    input_dir_2 = "/SSDe/sangbeom_lee/22-38.제조환경/가상데이터/annotation"
+    # input_dir_1 = "/SSDe/sangbeom_lee/22-38.제조환경/실제데이터/annotation"
+    # input_dir_2 = "/SSDe/sangbeom_lee/22-38.제조환경/가상데이터/annotation"
     # output_vision_file = "/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact_80/instances.json"
     # output_referring_file = "/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact_80/refs.p"
-    output_csv_file = "/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact_80/group_split.csv"
+    # output_csv_file = "/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact_80/group_split.csv"
 
     # convert_to_refcoco_format(input_dir, output_file)
     split_annotations_for_dataset(input_dir_1, input_dir_2, output_csv_file, total_train_groups=16000)
