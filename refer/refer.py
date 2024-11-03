@@ -53,7 +53,7 @@ class REFER:
             self.IMAGE_DIR = osp.join(data_root, 'images/mscoco/images/train2014')
         elif dataset == 'refclef':
             self.IMAGE_DIR = osp.join(data_root, 'images/saiapr_tc-12')
-        elif dataset in ['aihub_indoor', 'aihub_manufact', 'aihub_indoor_80']:
+        elif dataset in ['aihub_indoor', 'aihub_manufact', 'aihub_indoor_80', 'aihub_manufact_80']:
             if dataset == 'aihub_indoor':
                 self.DATA_DIR = osp.join(data_root, 'refcoco')
                 print('Dataset preprocessing...')
@@ -79,6 +79,15 @@ class REFER:
                 print('Dataset preprocessing...')
                 print('Print list of AIHub Indoor dataset...')
                 # print(os.listdir(self.IMAGE_DIR))
+            elif dataset == 'aihub_manufact_80':
+                self.DATA_DIR = osp.join(data_root, 'refcoco')
+                print('Dataset preprocessing...')
+                print('Print list of AIHub Manufact dataset...')
+                self.DATA_DIR = "refer/data/aihub_refcoco_format/manufact_80"
+                self.IMAGE_DIR = "refer/data/aihub_refcoco_format/manufact_80/images"
+                print('Dataset preprocessing...')
+                print('Print list of AIHub Manufact dataset...')
+                # print(os.listdir(self.IMAGE_DIR))
         else:
             print('No refer dataset is called [%s]' % dataset)
             sys.exit()
@@ -86,7 +95,7 @@ class REFER:
 
         # load refs from data/dataset/refs(dataset).json
         tic = time.time()
-        if dataset in ['aihub_indoor', 'aihub_manufact', 'aihub_indoor_80']:
+        if dataset in ['aihub_indoor', 'aihub_manufact', 'aihub_indoor_80', 'aihub_manufact_80']:
             ref_file = osp.join(self.DATA_DIR, 'refs.p')
         else:
             ref_file = osp.join(self.DATA_DIR, 'refs(' + splitBy + ').p')
@@ -156,7 +165,7 @@ class REFER:
             for sent in ref['sentences']:
                 Sents[sent['sent_id']] = sent
                 sentToRef[sent['sent_id']] = ref
-                sentToTokens[sent['sent_id']] = sent['tokens']
+                # sentToTokens[sent['sent_id']] = sent['tokens']
 
         # create class members
         self.Refs = Refs
@@ -169,7 +178,7 @@ class REFER:
         self.refToAnn = refToAnn
         self.annToRef = annToRef
         self.catToRefs = catToRefs
-        self.sentToRef = sentToRef
+        # self.sentToRef = sentToRef
         self.sentToTokens = sentToTokens
         print('index created.')
 
@@ -321,7 +330,7 @@ class REFER:
         ann = self.refToAnn[ref['ref_id']]
         image = self.Imgs[ref['image_id']]
 
-        if self.dataset in ['aihub_indoor', 'aihub_manufact', 'aihub_indoor_80']:
+        if self.dataset in ['aihub_indoor', 'aihub_manufact', 'aihub_indoor_80', 'aihub_manufact_80']:
             rle = [ann['segmentation']]
         else:
             if type(ann['segmentation'][0]) == list:  # polygon
