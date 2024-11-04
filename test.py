@@ -117,7 +117,7 @@ def main(args):
     single_model.load_state_dict(checkpoint['model'])
     model = single_model.to(device)
 
-    if args.model != 'lavt_one':
+    if args.model != 'lavt_one' and args.model != 'lavt_one_xlm':
         model_class = BertModel
         single_bert_model = model_class.from_pretrained(args.ck_bert)
         # work-around for a transformers bug; need to update to a newer version of transformers to remove these two lines

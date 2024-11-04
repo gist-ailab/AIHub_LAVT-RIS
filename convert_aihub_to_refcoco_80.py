@@ -501,6 +501,7 @@ def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vis
             train_num += 1
         elif split == 'validation':
             # valid_num += 1
+            split = 'val'
             pass
         else:
             print(f"Unexpected split value {split} for group ID {group_id}")
