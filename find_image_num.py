@@ -81,14 +81,14 @@ def split_groups_with_fixed_train_size(input_base_dir_1, input_base_dir_2, outpu
 if __name__ == "__main__":
 
     # 80 percent AIHub indoor 
-    # input_dir_1 = "/SSDa/sangbeom_lee/22-39.가정환경/실제데이터/annotation"
-    # input_dir_2 = "/SSDa/sangbeom_lee/22-39.가정환경/가상데이터/annotation"
-    # output_csv_file = "/SSDa/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/indoor_80/group_split.csv"
+    input_dir_1 = "/SSDa/sangbeom_lee/22-39.가정환경/실제데이터/annotation"
+    input_dir_2 = "/SSDa/sangbeom_lee/22-39.가정환경/가상데이터/annotation"
+    output_csv_file = "/SSDa/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/indoor_80/group_split.csv"
 
     # 입력 디렉토리를 설정합니다.
-    input_dir_1 = "/SSDe/sangbeom_lee/22-38.제조환경/실제데이터/annotation"
-    input_dir_2 = "/SSDe/sangbeom_lee/22-38.제조환경/가상데이터/annotation"
-    output_csv_file = "/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact_80/group_split.csv"
+    # input_dir_1 = "/SSDe/sangbeom_lee/22-38.제조환경/실제데이터/annotation"
+    # input_dir_2 = "/SSDe/sangbeom_lee/22-38.제조환경/가상데이터/annotation"
+    # output_csv_file = "/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact_80/group_split.csv"
 
     # 함수를 호출하여 그룹을 train과 validation으로 나눕니다.
     split_groups_with_fixed_train_size(input_dir_1, input_dir_2, output_csv_file, total_train_groups=16000)
