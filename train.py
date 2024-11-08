@@ -286,13 +286,14 @@ def main(args):
     iterations = 0
     best_oIoU = -0.1
 
-    # resume training (optimizer, lr scheduler, and the epoch)
-    if args.resume:
-        optimizer.load_state_dict(checkpoint['optimizer'])
-        lr_scheduler.load_state_dict(checkpoint['lr_scheduler'])
-        resume_epoch = checkpoint['epoch']
-    else:
-        resume_epoch = -999
+    # # resume training (optimizer, lr scheduler, and the epoch)
+    # if args.resume:
+    #     optimizer.load_state_dict(checkpoint['optimizer'])
+    #     lr_scheduler.load_state_dict(checkpoint['lr_scheduler'])
+    #     resume_epoch = checkpoint['epoch']
+    # else:
+    #     resume_epoch = -999
+    resume_epoch = -999
 
     # training loops
     for epoch in range(max(0, resume_epoch+1), args.epochs):
