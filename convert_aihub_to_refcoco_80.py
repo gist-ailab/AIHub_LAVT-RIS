@@ -521,6 +521,7 @@ def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vis
         # Process each annotation within the JSON file
         for ann in data['annotations']:
             # Vision annotation: Include bbox, segmentation, area, etc.
+            print("id", ann['id'])
             try:
                 vision_annotation = {
                     "image_id": image_id_counter,

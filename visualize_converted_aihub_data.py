@@ -33,8 +33,8 @@ def sanitize_filename(text):
     return text[:50]
 
 # Paths to data files (replace with your actual paths)
-instances_json_file = 'refer/data/aihub_refcoco_format/indoor_80/instances.json'  # Replace with the path to your instances.json
-refs_pickle_file = 'refer/data/aihub_refcoco_format/indoor_80/refs.p'            # Replace with the path to your refs.p
+instances_json_file = 'refer/data/aihub_refcoco_format/indoor_80/instances_2.json'  # Replace with the path to your instances.json
+refs_pickle_file = 'refer/data/aihub_refcoco_format/indoor_80/refs_2.p'            # Replace with the path to your refs.p
 images_dir = 'refer/data/aihub_refcoco_format/indoor_80/images'                  # Replace with the path to your images directory
 output_dir = 'refer/data/aihub_refcoco_format/indoor_80/visualizations'           # Replace with the path to your output directory
 
@@ -59,7 +59,7 @@ annotations = {}
 for ann in coco_data['annotations']:
     annotations[ann['id']] = ann
 
-N = 5  # Number of samples to check
+N = 25  # Number of samples to check
 sample_refs = random.sample(referring_data, N)
 
 for idx, ref in enumerate(sample_refs):
