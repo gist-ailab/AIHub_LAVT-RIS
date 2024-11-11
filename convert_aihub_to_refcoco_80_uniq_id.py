@@ -538,6 +538,9 @@ def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vis
                     "area": ann['area'],
                     "iscrowd": ann['iscrowd'],
                 }
+                if ann['bbox'] == None:
+                    print(annotation_file.split('/')[-3:])
+                    continue
                 # vision_annotations['annotations'].append(vision_annotation)
             except KeyError:
                 print(annotation_file.split('/')[-3:])

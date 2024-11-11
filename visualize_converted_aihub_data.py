@@ -59,10 +59,14 @@ annotations = {}
 for ann in coco_data['annotations']:
     annotations[ann['id']] = ann
 
-N = 25  # Number of samples to check
+N = 10000  # Number of samples to check
 sample_refs = random.sample(referring_data, N)
 
+# Sample ann_id is 139465
+# sample_refs = [ref for ref in referring_data if ref['ref_id'] == 139465]
+
 for idx, ref in enumerate(sample_refs):
+# for idx, ref in enumerate(referring_data):
     ref_id = ref['ref_id']
     image_id = ref['image_id']
     ann_id = ref['ann_id']
@@ -132,7 +136,7 @@ for idx, ref in enumerate(sample_refs):
     sanitized_text = sanitize_filename(referring_text)
 
     # Construct the output filename
-    output_filename = f'ref_{ref_id}_img_{image_id}_ann_{ann_id}_{sanitized_text}.png'
+    output_filename = f'ref_{ref_id}_file_{file_name}_ann_{ann_id}_{sanitized_text}.png'
     output_path = os.path.join(output_dir, output_filename)
 
     # Save the figure to the output directory

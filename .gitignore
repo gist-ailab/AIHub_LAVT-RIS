@@ -3,6 +3,7 @@ pretrained_weights/*
 checkpoints/*
 demo/*
 models/*
+aihub_vis/*
 */__pycache__/*
 */*/__pycache__/*
 __pycache__
