@@ -33,17 +33,10 @@ def sanitize_filename(text):
     return text[:50]
 
 # Paths to data files (replace with your actual paths)
-<<<<<<< HEAD
 instances_json_file = 'refer/data/aihub_refcoco_format/manufact_80/instances_2.json'  # Replace with the path to your instances.json
 refs_pickle_file = 'refer/data/aihub_refcoco_format/manufact_80/refs_2.p'            # Replace with the path to your refs.p
 images_dir = 'refer/data/aihub_refcoco_format/manufact_80/images'                  # Replace with the path to your images directory
 output_dir = 'refer/data/aihub_refcoco_format/manufact_80/visualizations'           # Replace with the path to your output directory
-=======
-instances_json_file = 'refer/data/aihub_refcoco_format/indoor_80/instances_2.json'  # Replace with the path to your instances.json
-refs_pickle_file = 'refer/data/aihub_refcoco_format/indoor_80/refs_2.p'            # Replace with the path to your refs.p
-images_dir = 'refer/data/aihub_refcoco_format/indoor_80/images'                  # Replace with the path to your images directory
-output_dir = 'refer/data/aihub_refcoco_format/indoor_80/visualizations'           # Replace with the path to your output directory
->>>>>>> be0afeada87e2631e0891075481d8bb653073f43
 
 # Create the output directory if it doesn't exist
 os.makedirs(output_dir, exist_ok=True)
@@ -66,7 +59,7 @@ annotations = {}
 for ann in coco_data['annotations']:
     annotations[ann['id']] = ann
 
-N = 25  # Number of samples to check
+N = 100  # Number of samples to check
 sample_refs = random.sample(referring_data, N)
 
 for idx, ref in enumerate(sample_refs):

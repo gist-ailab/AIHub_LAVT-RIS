@@ -212,8 +212,8 @@ class REFER:
                     refs = [ref for ref in refs if ref['split'] == split]  # rarely used I guess...
                 elif split == 'test':
                     refs = [ref for ref in refs if 'test' in ref['split']]
-                elif self.dataset == 'aihub_manufact_80' and split == 'val':
-                    refs = [ref for ref in refs if ref['split'] == 'validation']
+                # elif self.dataset == 'aihub_manufact_80' and split == 'val':
+                #     refs = [ref for ref in refs if ref['split'] == 'validation']
                 elif split == 'train' or split == 'val':
                     refs = [ref for ref in refs if ref['split'] == split]
                 else:
