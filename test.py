@@ -17,6 +17,11 @@ import numpy as np
 from PIL import Image
 import torch.nn.functional as F
 
+import torchvision.transforms as T_t
+import numpy as np
+from PIL import Image
+from scipy.ndimage.morphology import binary_dilation
+
 
 def get_dataset(image_set, transform, args):
     from data.dataset_refer_bert import ReferDataset
@@ -31,6 +36,27 @@ def get_dataset(image_set, transform, args):
 
 
 def evaluate(model, data_loader, bert_model, device):
+    def overlay_davis(image, mask, colors=[[0, 0, 0], [255, 0, 0]], cscale=1, alpha=0.4):
+        colors = np.reshape(colors, (-1, 3))
+        colors = np.atleast_2d(colors) * cscale
+
+        im_overlay = image.copy()
+        object_ids = np.unique(mask)
+
+        for object_id in object_ids[1:]:
+            # Overlay color on binary mask
+            foreground = image * alpha + np.ones(image.shape) * (1 - alpha) * np.array(colors[object_id])
+            binary_mask = mask == object_id
+
+            # Compose image
+            im_overlay[binary_mask] = foreground[binary_mask]
+
+            # Contours
+            countours = binary_dilation(binary_mask) ^ binary_mask
+            im_overlay[countours, :] = 0
+
+        return im_overlay.astype(image.dtype)
+
     model.eval()
     metric_logger = utils.MetricLogger(delimiter="  ")
 
@@ -41,6 +67,9 @@ def evaluate(model, data_loader, bert_model, device):
     seg_total = 0
     mean_IoU = []
     header = 'Test:'
+
+    # Counter for naming visualizations
+    vis_counter = 0
 
     with torch.no_grad():
         for data in metric_logger.log_every(data_loader, 100, header):
@@ -72,6 +101,41 @@ def evaluate(model, data_loader, bert_model, device):
                     eval_seg_iou = eval_seg_iou_list[n_eval_iou]
                     seg_correct[n_eval_iou] += (this_iou >= eval_seg_iou)
                 seg_total += 1
+
+                # idx = 0
+                # # print(output_mask.shape)
+                # # print(image.shape)
+                # pred_mask = output_mask[idx]  # Predicted mask
+                # gt_mask = target[idx]      # Ground truth mask
+                # # Visualization code
+                # img_tensor = image[idx]  # Shape: (3, H, W)
+                # # Unnormalize the image
+                # unnormalize = T_t.Normalize(
+                #     mean=[-0.485 / 0.229, -0.456 / 0.224, -0.406 / 0.225],
+                #     std=[1 / 0.229, 1 / 0.224, 1 / 0.225]
+                # )
+                # img_tensor = unnormalize(img_tensor)
+                # img_numpy = img_tensor.cpu().numpy()  # Shape: (3, H, W)
+                # img_numpy = np.transpose(img_numpy, (1, 2, 0))  # Shape: (H, W, 3)
+                # img_numpy = np.clip(img_numpy, 0, 1)
+                # img_numpy = (img_numpy * 255).astype(np.uint8)
+
+                # # Overlay masks
+                # vis_pred = overlay_davis(img_numpy, pred_mask)
+                # vis_gt = overlay_davis(img_numpy, gt_mask)
+
+                # # Horizontally stack the two visualizations
+                # combined_vis = np.hstack((vis_pred, vis_gt))
+
+                # # Save visualizations
+                # # pred_image = Image.fromarray(vis_pred)
+                # # gt_image = Image.fromarray(vis_gt)
+                # # pred_image.save(f'aihub_pred_vis/visualization_pred_{vis_counter}.jpg')
+                # # gt_image.save(f'aihub_pred_vis/visualization_gt_{vis_counter}.jpg')
+                # combined_image = Image.fromarray(combined_vis)
+                # combined_image.save(f'aihub_pred_vis/visualization_{vis_counter}.jpg')
+                # vis_counter += 1
+
 
             del image, target, sentences, attentions, output, output_mask
             if bert_model is not None:
