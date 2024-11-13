@@ -132,19 +132,48 @@ def visualize_specific_files(annotation_dir, output_dir, desired_file_names):
 
 if __name__ == "__main__":
     # Specify the annotation directory and the output directory
-    annotation_dir = "/SSDa/sangbeom_lee/22-39.가정환경/가상데이터/annotation"  # Replace with your annotation directory path
-    output_dir = "aihub_vis"          # Replace with your desired output directory path
+    # annotation_dir = "/SSDa/sangbeom_lee/22-39.가정환경/가상데이터/annotation"  # Replace with your annotation directory path
+    annotation_dir = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/사숲 공유본/22-39.가정환경/가상데이터/annotation"  # Replace with your annotation directory path
+    output_dir = "aihub_vis_100_fix"          # Replace with your desired output directory path
+
+    # annotation_dir = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/사숲 공유본/22-38.제조환경/가상데이터/annotation"  # Replace with your annotation directory path
+    # output_dir = "aihub_vis_manu_100"          # Replace with your desired output directory path
+
+    os.makedirs(output_dir, exist_ok=True)  
 
     # Specify the desired file names
     desired_file_names = [
         # "real_image123.png",
-        "syn_004051_000000.png",
-        "syn_004051_000001.png",
-        "syn_004051_000002.png",
-        "syn_004051_000003.png",
-        "syn_004051_000004.png",
-        # Add more file names as needed
+        "syn_003947_000000.png",
+        "syn_003948_000000.png",
+        "syn_003968_000000.png",
+        "syn_003975_000000.png",
+        "syn_003976_000000.png",
+        "syn_003983_000000.png"
+        # Add 1or40file names as needed
     ]
+
+    # # Initialize the list to store desired file names
+    # desired_file_names = []
+
+    # # Define the starting and ending numbers
+    # start_number = 2340
+    # end_number = 2519
+    # increment = 1  # You can change this to 1 for every file or any other increment
+
+    # # Generate the file names using a for loop
+    # for i in range(start_number, end_number + 1, increment):
+    #     # If you want to skip specific numbers, you can add a condition here
+    #     # For example, to skip 4000:
+    #     # if i == 4000:
+    #     #     continue
+    #     # Format the number with leading zeros to ensure it's 6 digits
+    #     file_number = f"{i:06d}"
+    #     file_name = f"syn_{file_number}_000000.png"
+    #     desired_file_names.append(file_name)
+
+    # Print or use the list as needed
+    print(desired_file_names)
 
     visualize_specific_files(annotation_dir, output_dir, desired_file_names)
 

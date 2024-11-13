@@ -463,11 +463,13 @@ def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vis
     # error_list = ["{0:06d}".format(i) for i in manufact_error_list]
     # error_list = ["{0:06d}".format(i) for i in indoor_error_list]
 
-    error_file = open("referring_error.txt", 'w')
-    error_file_vision = open("vision_error.txt", 'w')
+    # error_file = open("referring_error.txt", 'w')
+    # error_file_vision = open("vision_error.txt", 'w')
 
     valid_num = 0
     train_num = 0
+    val_num = 0
+    test_num = 0
     for annotation_file in tqdm(ann_list):
         
         with open(annotation_file, 'r', encoding='utf-8') as f:
@@ -503,7 +505,9 @@ def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vis
         elif split == 'validation':
             # valid_num += 1
             split = 'val'
-            pass
+            val_num += 1
+        elif split == 'test':
+            test_num += 1
         else:
             print(f"Unexpected split value {split} for group ID {group_id}")
             continue
@@ -545,8 +549,8 @@ def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vis
             except KeyError:
                 print(annotation_file.split('/')[-3:])
                 print("Error in annotation: ", ann)
-                data = f"vision_annotation: {annotation_file.split('/')[-3:]}\n"
-                error_file_vision.write(data)
+                # data = f"vision_annotation: {annotation_file.split('/')[-3:]}\n"
+                # error_file_vision.write(data)
                 continue
 
             # Referring annotation format
@@ -559,7 +563,7 @@ def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vis
             except KeyError:
                 data = f"referring_expression: {annotation_file.split('/')[-3:]}\n"
                 print(data)
-                error_file.write(data)
+                # error_file.write(data)
                 continue
 
             vision_annotations['annotations'].append(vision_annotation)
@@ -604,8 +608,10 @@ def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vis
         shutil.copy(image_file, os.path.join(output_image_dir, file_name))
         # shutil.copy(image_file, os.path.join(output_image_dir, data['images']['file_name']))
     
-    print(valid_num)
-    print(train_num)
+    print("Total: ", valid_num)
+    print("train: ", train_num)
+    print("val: ", val_num)
+    print("test: ", test_num)
 
     # Save the vision annotations to a JSON file
     with open(output_vision_file, 'w', encoding='utf-8') as f:
@@ -637,12 +643,26 @@ if __name__ == "__main__":
     # csv_file_path = "/SSDa/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/indoor_80/group_split.csv"
 
 
-    # 80 percent AIHub manufact 
-    input_dir_1 = "/SSDe/sangbeom_lee/22-38.제조환경/실제데이터/annotation"
-    input_dir_2 = "/SSDe/sangbeom_lee/22-38.제조환경/가상데이터/annotation"
-    output_vision_file = "/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact_80/instances_2.json"
-    output_referring_file = "/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact_80/refs_2.p"
-    csv_file_path = "/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact_80/group_split.csv"
+    # # 80 percent AIHub manufact 
+    # input_dir_1 = "/SSDe/sangbeom_lee/22-38.제조환경/실제데이터/annotation"
+    # input_dir_2 = "/SSDe/sangbeom_lee/22-38.제조환경/가상데이터/annotation"
+    # output_vision_file = "/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact_80/instances_2.json"
+    # output_referring_file = "/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact_80/refs_2.p"
+    # csv_file_path = "/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact_80/group_split.csv"
+
+    # # 80 percent AIHub manufact 
+    # input_dir_1 = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/사숲 공유본/22-38.제조환경/실제데이터/annotation"
+    # input_dir_2 = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/사숲 공유본/22-38.제조환경/가상데이터/annotation"
+    # output_vision_file = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/manufact_80/instances_3.json"
+    # output_referring_file = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/manufact_80/refs_3.p"
+    # csv_file_path = "./refer/data/aihub_refcoco_format/manufact_80/group_split_updated.csv"
+    
+    # 80 percent AIHub indoor 
+    input_dir_1 = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/사숲 공유본/22-39.가정환경/실제데이터/annotation"
+    input_dir_2 = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/사숲 공유본/22-39.가정환경/가상데이터/annotation"
+    output_vision_file = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/indoor_80/instances_3.json"
+    output_referring_file = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/indoor_80/refs_3.p"
+    csv_file_path = "./refer/data/aihub_refcoco_format/indoor_80/group_split_updated.csv"
 
     # convert_to_refcoco_format(input_dir, output_file)
     split_annotations_for_dataset(input_dir_1, input_dir_2, output_vision_file, output_referring_file, csv_file_path)

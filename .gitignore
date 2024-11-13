@@ -4,6 +4,9 @@ checkpoints/*
 demo/*
 models/*
 aihub_vis/*
+aihub_vis_100/*
+aihub_vis_100_fix/*
+aihub_vis_manu_100/*
 */__pycache__/*
 */*/__pycache__/*
 __pycache__
