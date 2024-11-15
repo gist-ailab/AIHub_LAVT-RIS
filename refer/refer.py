@@ -96,7 +96,7 @@ class REFER:
         # load refs from data/dataset/refs(dataset).json
         tic = time.time()
         if dataset in ['aihub_indoor', 'aihub_manufact', 'aihub_indoor_80', 'aihub_manufact_80']:
-            ref_file = osp.join(self.DATA_DIR, 'refs_3.p')
+            ref_file = osp.join(self.DATA_DIR, 'refs.p')
         else:
             ref_file = osp.join(self.DATA_DIR, 'refs(' + splitBy + ').p')
 
@@ -109,7 +109,7 @@ class REFER:
         self.data['refs'] = pickle.load(open(ref_file, 'rb'))
 
         # load annotations from data/dataset/instances.json
-        instances_file = osp.join(self.DATA_DIR, 'instances_3.json')
+        instances_file = osp.join(self.DATA_DIR, 'instances.json')
         instances = json.load(open(instances_file, 'r'))
         self.data['images'] = instances['images']
         self.data['annotations'] = instances['annotations']
