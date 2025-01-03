@@ -147,8 +147,8 @@ if __name__ == "__main__":
 
     input_dir_1 = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/사숲 공유본/22-39.가정환경/실제데이터/annotation"
     input_dir_2 = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/사숲 공유본/22-39.가정환경/가상데이터/annotation"
-    existing_csv_file = "refer/data/aihub_refcoco_format/indoor_80/group_split.csv"
-    output_csv_file = "refer/data/aihub_refcoco_format/indoor_80/group_split_updated.csv"
+    existing_csv_file = "refer/data/aihub_refcoco_format/group_split.csv"
+    output_csv_file = "refer/data/aihub_refcoco_format/group_split_updated.csv"
 
     update_splits_with_validation_and_test(
         input_dir_1,
