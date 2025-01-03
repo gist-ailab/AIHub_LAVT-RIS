@@ -500,17 +500,20 @@ def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vis
         if split is None:
             print(f"Group ID {group_id} not found in CSV. Skipping.")
             continue
-        elif split == 'train':
-            train_num += 1
-        elif split == 'validation':
-            # valid_num += 1
-            split = 'val'
-            val_num += 1
-        elif split == 'test':
-            test_num += 1
+        # elif split == 'train':
+        #     train_num += 1
+        # elif split == 'validation':
+        #     # valid_num += 1
+        #     split = 'val'
+        #     val_num += 1
+        # elif split == 'test':
+        #     test_num += 1
+        # else:
+        #     print(f"Unexpected split value {split} for group ID {group_id}")
+        #     continue
         else:
-            print(f"Unexpected split value {split} for group ID {group_id}")
-            continue
+            split = 'test'
+            test_num += 1
 
         # Prepare vision annotation (COCO format)
         image_entry = {
@@ -651,17 +654,17 @@ if __name__ == "__main__":
     # csv_file_path = "/SSDe/sangbeom_lee/AIHub_LAVT-RIS/refer/data/aihub_refcoco_format/manufact_80/group_split.csv"
 
     # 80 percent AIHub manufact 
-    input_dir_1 = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/사숲 공유본/22-38.제조환경/실제데이터/annotation"
-    input_dir_2 = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/사숲 공유본/22-38.제조환경/가상데이터/annotation"
-    output_vision_file = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/manufact_80/instances_4.json"
-    output_referring_file = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/manufact_80/refs_4.p"
+    input_dir_1 = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/사숲 공유본/모델테스트용데이터셋_1119/22-38.제조환경/실제데이터/annotation"
+    input_dir_2 = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/사숲 공유본/모델테스트용데이터셋_1119/22-38.제조환경/가상데이터/annotation"
+    output_vision_file = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/manufact_test_1120/instances.json"
+    output_referring_file = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/manufact_test_1120/refs.p"
     csv_file_path = "./refer/data/aihub_refcoco_format/manufact_80/group_split_updated_1114.csv"
     
     # # 80 percent AIHub indoor 
-    # input_dir_1 = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/사숲 공유본/22-39.가정환경/실제데이터/annotation"
-    # input_dir_2 = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/사숲 공유본/22-39.가정환경/가상데이터/annotation"
-    # output_vision_file = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/indoor_80/instances_3.json"
-    # output_referring_file = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/indoor_80/refs_3.p"
+    # input_dir_1 = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/사숲 공유본/모델테스트용데이터셋_1119/22-39.가정환경/실제데이터/annotation"
+    # input_dir_2 = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/사숲 공유본/모델테스트용데이터셋_1119/22-39.가정환경/가상데이터/annotation"
+    # output_vision_file = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/indoor_test_1120/instances.json"
+    # output_referring_file = "/media/sblee/170d6766-97d9-4917-8fc6-7d6ae84df896/aihub_2024_datasets/indoor_test_1120/refs.p"
     # csv_file_path = "./refer/data/aihub_refcoco_format/indoor_80/group_split_updated.csv"
 
     # convert_to_refcoco_format(input_dir, output_file)

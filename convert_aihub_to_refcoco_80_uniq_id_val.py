@@ -185,8 +185,13 @@ if __name__ == "__main__":
     input_dir_2 = "refer/data/라벨링데이터/synthetic"
 
     # Set the output file paths
+<<<<<<< HEAD
     output_vision_file = "refer/data/aihub_refcoco_format/manufact_test_1120/instances.json"
     output_referring_file = "refer/data/aihub_refcoco_format/manufact_test_1120/refs.p"
+=======
+    output_vision_file = "refer/data/aihub_refcoco_format/indoor_test_1121/instances.json"
+    output_referring_file = "refer/data/aihub_refcoco_format/indoor_test_1121/refs.p"
+>>>>>>> cf722cb10c2efd683d12e214ee5c20a7fd137321
 
     # Call the function to process the dataset
     split_annotations_for_dataset(input_dir_1, input_dir_2, output_vision_file, output_referring_file)

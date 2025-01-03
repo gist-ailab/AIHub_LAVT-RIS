@@ -1,0 +1,554 @@
+Image size: 480
+Command: python test.py --model lavt_one_xlm --swin_type base --dataset aihub_indoor_80 --split test --resume ./checkpoints/model_best_refcoco_indoor_80_uniq.pth --workers 4 --ddp_trained_weights --window12 --img_size 480 2>&1 | tee aihub_indoor_ris_log.txt
+2024-11-21 07:50:02
+2024-11-21 07:50:02
+2024-11-21 07:50:02
+loading dataset aihub_indoor_80 into memory...
+Dataset preprocessing...
+Print list of AIHub Indoor dataset...
+Dataset preprocessing...
+Print list of AIHub Indoor dataset...
+creating index...
+index created.
+DONE (t=1.11s)
+lavt_one_xlm
+Window size 12!
+Randomly initialize Multi-modal Swin Transformer weights.
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+Test:  [    0/50000]  eta: 13:10:08    time: 0.9482  data: 0.4488  max mem: 1666
+Test:  [  100/50000]  eta: 1:58:21    time: 0.1381  data: 0.0020  max mem: 1669
+Test:  [  200/50000]  eta: 1:51:15    time: 0.1183  data: 0.0014  max mem: 1669
+Test:  [  300/50000]  eta: 1:47:51    time: 0.1168  data: 0.0014  max mem: 1669
+Test:  [  400/50000]  eta: 1:47:12    time: 0.1152  data: 0.0013  max mem: 1669
+Test:  [  500/50000]  eta: 1:47:18    time: 0.1288  data: 0.0019  max mem: 1669
+Test:  [  600/50000]  eta: 1:48:26    time: 0.1169  data: 0.0014  max mem: 1669
+Test:  [  700/50000]  eta: 1:47:07    time: 0.1396  data: 0.0021  max mem: 1669
+Test:  [  800/50000]  eta: 1:47:17    time: 0.1297  data: 0.0019  max mem: 1669
+Test:  [  900/50000]  eta: 1:45:42    time: 0.1170  data: 0.0014  max mem: 1669
+Test:  [ 1000/50000]  eta: 1:44:39    time: 0.1320  data: 0.0025  max mem: 1669
+Test:  [ 1100/50000]  eta: 1:43:56    time: 0.1156  data: 0.0016  max mem: 1669
+Test:  [ 1200/50000]  eta: 1:44:17    time: 0.1460  data: 0.0022  max mem: 1669
+Test:  [ 1300/50000]  eta: 1:43:50    time: 0.1259  data: 0.0018  max mem: 1669
+Test:  [ 1400/50000]  eta: 1:43:27    time: 0.1174  data: 0.0013  max mem: 1669
+Test:  [ 1500/50000]  eta: 1:43:21    time: 0.1292  data: 0.0017  max mem: 1669
+Test:  [ 1600/50000]  eta: 1:43:24    time: 0.1186  data: 0.0014  max mem: 1669
+Test:  [ 1700/50000]  eta: 1:43:18    time: 0.1453  data: 0.0022  max mem: 1669
+Test:  [ 1800/50000]  eta: 1:42:34    time: 0.1158  data: 0.0014  max mem: 1669
+Test:  [ 1900/50000]  eta: 1:42:11    time: 0.1154  data: 0.0013  max mem: 1669
+Test:  [ 2000/50000]  eta: 1:41:31    time: 0.1141  data: 0.0013  max mem: 1669
+Test:  [ 2100/50000]  eta: 1:41:19    time: 0.1412  data: 0.0023  max mem: 1669
+Test:  [ 2200/50000]  eta: 1:40:56    time: 0.1236  data: 0.0016  max mem: 1669
+Test:  [ 2300/50000]  eta: 1:41:09    time: 0.1264  data: 0.0019  max mem: 1669
+Test:  [ 2400/50000]  eta: 1:40:32    time: 0.1150  data: 0.0013  max mem: 1669
+Test:  [ 2500/50000]  eta: 1:40:05    time: 0.1227  data: 0.0015  max mem: 1669
+Test:  [ 2600/50000]  eta: 1:39:54    time: 0.1155  data: 0.0013  max mem: 1669
+Test:  [ 2700/50000]  eta: 1:39:21    time: 0.1147  data: 0.0013  max mem: 1669
+Test:  [ 2800/50000]  eta: 1:38:52    time: 0.1224  data: 0.0016  max mem: 1669
+Test:  [ 2900/50000]  eta: 1:39:09    time: 0.1357  data: 0.0019  max mem: 1669
+Test:  [ 3000/50000]  eta: 1:38:54    time: 0.1202  data: 0.0018  max mem: 1669
+Test:  [ 3100/50000]  eta: 1:38:39    time: 0.1226  data: 0.0019  max mem: 1669
+Test:  [ 3200/50000]  eta: 1:38:13    time: 0.1153  data: 0.0017  max mem: 1669
+Test:  [ 3300/50000]  eta: 1:37:50    time: 0.1228  data: 0.0021  max mem: 1669
+Test:  [ 3400/50000]  eta: 1:37:34    time: 0.1199  data: 0.0015  max mem: 1669
+Test:  [ 3500/50000]  eta: 1:37:16    time: 0.1302  data: 0.0021  max mem: 1669
+Test:  [ 3600/50000]  eta: 1:37:00    time: 0.1244  data: 0.0022  max mem: 1669
+Test:  [ 3700/50000]  eta: 1:36:44    time: 0.1168  data: 0.0014  max mem: 1669
+Test:  [ 3800/50000]  eta: 1:36:25    time: 0.1155  data: 0.0014  max mem: 1669
+Test:  [ 3900/50000]  eta: 1:36:08    time: 0.1218  data: 0.0017  max mem: 1669
+Test:  [ 4000/50000]  eta: 1:35:53    time: 0.1228  data: 0.0019  max mem: 1669
+Test:  [ 4100/50000]  eta: 1:35:33    time: 0.1168  data: 0.0014  max mem: 1669
+Test:  [ 4200/50000]  eta: 1:35:16    time: 0.1153  data: 0.0013  max mem: 1669
+Test:  [ 4300/50000]  eta: 1:34:55    time: 0.1164  data: 0.0013  max mem: 1669
+Test:  [ 4400/50000]  eta: 1:34:34    time: 0.1165  data: 0.0013  max mem: 1669
+Test:  [ 4500/50000]  eta: 1:34:14    time: 0.1164  data: 0.0013  max mem: 1669
+Test:  [ 4600/50000]  eta: 1:33:53    time: 0.1165  data: 0.0014  max mem: 1669
+Test:  [ 4700/50000]  eta: 1:33:32    time: 0.1157  data: 0.0014  max mem: 1669
+Test:  [ 4800/50000]  eta: 1:33:12    time: 0.1152  data: 0.0014  max mem: 1669
+Test:  [ 4900/50000]  eta: 1:32:51    time: 0.1161  data: 0.0013  max mem: 1669
+Test:  [ 5000/50000]  eta: 1:32:31    time: 0.1149  data: 0.0013  max mem: 1669
+Test:  [ 5100/50000]  eta: 1:32:11    time: 0.1150  data: 0.0013  max mem: 1669
+Test:  [ 5200/50000]  eta: 1:31:59    time: 0.1243  data: 0.0018  max mem: 1669
+Test:  [ 5300/50000]  eta: 1:31:58    time: 0.1161  data: 0.0013  max mem: 1669
+Test:  [ 5400/50000]  eta: 1:31:40    time: 0.1157  data: 0.0013  max mem: 1669
+Test:  [ 5500/50000]  eta: 1:31:23    time: 0.1255  data: 0.0016  max mem: 1669
+Test:  [ 5600/50000]  eta: 1:31:16    time: 0.1208  data: 0.0016  max mem: 1669
+Test:  [ 5700/50000]  eta: 1:30:57    time: 0.1144  data: 0.0013  max mem: 1669
+Test:  [ 5800/50000]  eta: 1:30:53    time: 0.1402  data: 0.0020  max mem: 1669
+Test:  [ 5900/50000]  eta: 1:30:47    time: 0.1144  data: 0.0013  max mem: 1669
+Test:  [ 6000/50000]  eta: 1:30:28    time: 0.1141  data: 0.0014  max mem: 1669
+Test:  [ 6100/50000]  eta: 1:30:22    time: 0.1160  data: 0.0015  max mem: 1669
+Test:  [ 6200/50000]  eta: 1:30:16    time: 0.1246  data: 0.0015  max mem: 1669
+Test:  [ 6300/50000]  eta: 1:30:06    time: 0.1154  data: 0.0014  max mem: 1669
+Test:  [ 6400/50000]  eta: 1:29:52    time: 0.1217  data: 0.0015  max mem: 1669
+Test:  [ 6500/50000]  eta: 1:29:50    time: 0.1146  data: 0.0012  max mem: 1669
+Test:  [ 6600/50000]  eta: 1:29:42    time: 0.1488  data: 0.0021  max mem: 1669
+Test:  [ 6700/50000]  eta: 1:29:33    time: 0.1281  data: 0.0018  max mem: 1669
+Test:  [ 6800/50000]  eta: 1:29:21    time: 0.1315  data: 0.0018  max mem: 1669
+Test:  [ 6900/50000]  eta: 1:29:07    time: 0.1059  data: 0.0013  max mem: 1669
+Test:  [ 7000/50000]  eta: 1:28:58    time: 0.1266  data: 0.0018  max mem: 1669
+Test:  [ 7100/50000]  eta: 1:28:42    time: 0.1223  data: 0.0018  max mem: 1669
+Test:  [ 7200/50000]  eta: 1:28:28    time: 0.1258  data: 0.0016  max mem: 1669
+Test:  [ 7300/50000]  eta: 1:28:24    time: 0.1344  data: 0.0019  max mem: 1669
+Test:  [ 7400/50000]  eta: 1:28:19    time: 0.1428  data: 0.0022  max mem: 1669
+Test:  [ 7500/50000]  eta: 1:28:03    time: 0.1158  data: 0.0013  max mem: 1669
+Test:  [ 7600/50000]  eta: 1:27:52    time: 0.1152  data: 0.0013  max mem: 1669
+Test:  [ 7700/50000]  eta: 1:27:35    time: 0.1160  data: 0.0012  max mem: 1669
+Test:  [ 7800/50000]  eta: 1:27:18    time: 0.1159  data: 0.0013  max mem: 1669
+Test:  [ 7900/50000]  eta: 1:27:08    time: 0.1383  data: 0.0019  max mem: 1669
+Test:  [ 8000/50000]  eta: 1:26:53    time: 0.1150  data: 0.0013  max mem: 1669
+Test:  [ 8100/50000]  eta: 1:26:36    time: 0.1141  data: 0.0015  max mem: 1669
+Test:  [ 8200/50000]  eta: 1:26:23    time: 0.1152  data: 0.0013  max mem: 1669
+Test:  [ 8300/50000]  eta: 1:26:06    time: 0.1170  data: 0.0014  max mem: 1669
+Test:  [ 8400/50000]  eta: 1:25:50    time: 0.1153  data: 0.0013  max mem: 1669
+Test:  [ 8500/50000]  eta: 1:25:38    time: 0.1414  data: 0.0022  max mem: 1669
+Test:  [ 8600/50000]  eta: 1:25:36    time: 0.1451  data: 0.0020  max mem: 1669
+Test:  [ 8700/50000]  eta: 1:25:29    time: 0.1289  data: 0.0019  max mem: 1669
+Test:  [ 8800/50000]  eta: 1:25:17    time: 0.1436  data: 0.0022  max mem: 1669
+Test:  [ 8900/50000]  eta: 1:25:01    time: 0.1139  data: 0.0013  max mem: 1669
+Test:  [ 9000/50000]  eta: 1:24:44    time: 0.1152  data: 0.0014  max mem: 1669
+Test:  [ 9100/50000]  eta: 1:24:27    time: 0.1146  data: 0.0013  max mem: 1669
+Test:  [ 9200/50000]  eta: 1:24:11    time: 0.1147  data: 0.0013  max mem: 1669
+Test:  [ 9300/50000]  eta: 1:23:55    time: 0.1152  data: 0.0014  max mem: 1669
+Test:  [ 9400/50000]  eta: 1:23:45    time: 0.1192  data: 0.0017  max mem: 1669
+Test:  [ 9500/50000]  eta: 1:23:29    time: 0.1162  data: 0.0013  max mem: 1669
+Test:  [ 9600/50000]  eta: 1:23:13    time: 0.1152  data: 0.0015  max mem: 1669
+Test:  [ 9700/50000]  eta: 1:22:56    time: 0.1151  data: 0.0013  max mem: 1669
+Test:  [ 9800/50000]  eta: 1:22:48    time: 0.1476  data: 0.0024  max mem: 1669
+Test:  [ 9900/50000]  eta: 1:22:39    time: 0.1236  data: 0.0015  max mem: 1669
+Test:  [10000/50000]  eta: 1:22:27    time: 0.1149  data: 0.0013  max mem: 1669
+Test:  [10100/50000]  eta: 1:22:15    time: 0.1436  data: 0.0022  max mem: 1669
+Test:  [10200/50000]  eta: 1:22:11    time: 0.1485  data: 0.0022  max mem: 1669
+Test:  [10300/50000]  eta: 1:21:58    time: 0.1164  data: 0.0013  max mem: 1669
+Test:  [10400/50000]  eta: 1:21:44    time: 0.1156  data: 0.0013  max mem: 1669
+Test:  [10500/50000]  eta: 1:21:32    time: 0.1140  data: 0.0013  max mem: 1669
+Test:  [10600/50000]  eta: 1:21:16    time: 0.1150  data: 0.0013  max mem: 1669
+Test:  [10700/50000]  eta: 1:21:04    time: 0.1325  data: 0.0019  max mem: 1669
+Test:  [10800/50000]  eta: 1:20:53    time: 0.1143  data: 0.0013  max mem: 1669
+Test:  [10900/50000]  eta: 1:20:38    time: 0.1236  data: 0.0014  max mem: 1669
+Test:  [11000/50000]  eta: 1:20:25    time: 0.1399  data: 0.0022  max mem: 1669
+Test:  [11100/50000]  eta: 1:20:13    time: 0.1201  data: 0.0019  max mem: 1669
+Test:  [11200/50000]  eta: 1:19:58    time: 0.1127  data: 0.0013  max mem: 1669
+Test:  [11300/50000]  eta: 1:19:44    time: 0.1235  data: 0.0018  max mem: 1669
+Test:  [11400/50000]  eta: 1:19:32    time: 0.1351  data: 0.0019  max mem: 1669
+Test:  [11500/50000]  eta: 1:19:23    time: 0.1268  data: 0.0019  max mem: 1669
+Test:  [11600/50000]  eta: 1:19:10    time: 0.1367  data: 0.0021  max mem: 1669
+Test:  [11700/50000]  eta: 1:18:59    time: 0.1354  data: 0.0018  max mem: 1669
+Test:  [11800/50000]  eta: 1:18:45    time: 0.1158  data: 0.0013  max mem: 1669
+Test:  [11900/50000]  eta: 1:18:32    time: 0.1224  data: 0.0015  max mem: 1669
+Test:  [12000/50000]  eta: 1:18:21    time: 0.1290  data: 0.0017  max mem: 1669
+Test:  [12100/50000]  eta: 1:18:08    time: 0.1385  data: 0.0019  max mem: 1669
+Test:  [12200/50000]  eta: 1:17:56    time: 0.1170  data: 0.0013  max mem: 1669
+Test:  [12300/50000]  eta: 1:17:45    time: 0.1253  data: 0.0017  max mem: 1669
+Test:  [12400/50000]  eta: 1:17:40    time: 0.1450  data: 0.0022  max mem: 1669
+Test:  [12500/50000]  eta: 1:17:25    time: 0.1222  data: 0.0016  max mem: 1669
+Test:  [12600/50000]  eta: 1:17:13    time: 0.1204  data: 0.0015  max mem: 1669
+Test:  [12700/50000]  eta: 1:16:59    time: 0.1154  data: 0.0013  max mem: 1669
+Test:  [12800/50000]  eta: 1:16:44    time: 0.1147  data: 0.0014  max mem: 1669
+Test:  [12900/50000]  eta: 1:16:29    time: 0.1143  data: 0.0014  max mem: 1669
+Test:  [13000/50000]  eta: 1:16:17    time: 0.1182  data: 0.0014  max mem: 1669
+Test:  [13100/50000]  eta: 1:16:08    time: 0.1306  data: 0.0018  max mem: 1669
+Test:  [13200/50000]  eta: 1:15:54    time: 0.1149  data: 0.0013  max mem: 1669
+Test:  [13300/50000]  eta: 1:15:43    time: 0.1427  data: 0.0023  max mem: 1669
+Test:  [13400/50000]  eta: 1:15:30    time: 0.1307  data: 0.0019  max mem: 1669
+Test:  [13500/50000]  eta: 1:15:19    time: 0.1154  data: 0.0014  max mem: 1669
+Test:  [13600/50000]  eta: 1:15:06    time: 0.1369  data: 0.0021  max mem: 1669
+Test:  [13700/50000]  eta: 1:14:55    time: 0.1197  data: 0.0015  max mem: 1669
+Test:  [13800/50000]  eta: 1:14:44    time: 0.1424  data: 0.0023  max mem: 1669
+Test:  [13900/50000]  eta: 1:14:31    time: 0.1141  data: 0.0013  max mem: 1669
+Test:  [14000/50000]  eta: 1:14:18    time: 0.1148  data: 0.0013  max mem: 1669
+Test:  [14100/50000]  eta: 1:14:03    time: 0.1140  data: 0.0014  max mem: 1669
+Test:  [14200/50000]  eta: 1:13:51    time: 0.1152  data: 0.0014  max mem: 1669
+Test:  [14300/50000]  eta: 1:13:36    time: 0.1157  data: 0.0014  max mem: 1669
+Test:  [14400/50000]  eta: 1:13:23    time: 0.1296  data: 0.0019  max mem: 1669
+Test:  [14500/50000]  eta: 1:13:14    time: 0.1151  data: 0.0013  max mem: 1669
+Test:  [14600/50000]  eta: 1:13:01    time: 0.1353  data: 0.0019  max mem: 1669
+Test:  [14700/50000]  eta: 1:12:48    time: 0.1158  data: 0.0013  max mem: 1669
+Test:  [14800/50000]  eta: 1:12:34    time: 0.1133  data: 0.0013  max mem: 1669
+Test:  [14900/50000]  eta: 1:12:23    time: 0.1217  data: 0.0015  max mem: 1669
+Test:  [15000/50000]  eta: 1:12:09    time: 0.1240  data: 0.0018  max mem: 1669
+Test:  [15100/50000]  eta: 1:11:56    time: 0.1127  data: 0.0013  max mem: 1669
+Test:  [15200/50000]  eta: 1:11:42    time: 0.1157  data: 0.0013  max mem: 1669
+Test:  [15300/50000]  eta: 1:11:28    time: 0.1118  data: 0.0013  max mem: 1669
+Test:  [15400/50000]  eta: 1:11:15    time: 0.1154  data: 0.0013  max mem: 1669
+Test:  [15500/50000]  eta: 1:11:03    time: 0.1249  data: 0.0016  max mem: 1669
+Test:  [15600/50000]  eta: 1:10:51    time: 0.1152  data: 0.0013  max mem: 1669
+Test:  [15700/50000]  eta: 1:10:39    time: 0.1429  data: 0.0021  max mem: 1669
+Test:  [15800/50000]  eta: 1:10:29    time: 0.1146  data: 0.0013  max mem: 1669
+Test:  [15900/50000]  eta: 1:10:16    time: 0.1140  data: 0.0013  max mem: 1669
+Test:  [16000/50000]  eta: 1:10:03    time: 0.1355  data: 0.0021  max mem: 1669
+Test:  [16100/50000]  eta: 1:09:53    time: 0.1359  data: 0.0020  max mem: 1669
+Test:  [16200/50000]  eta: 1:09:38    time: 0.1132  data: 0.0015  max mem: 1669
+Test:  [16300/50000]  eta: 1:09:26    time: 0.1153  data: 0.0014  max mem: 1669
+Test:  [16400/50000]  eta: 1:09:13    time: 0.1239  data: 0.0017  max mem: 1669
+Test:  [16500/50000]  eta: 1:09:01    time: 0.1233  data: 0.0026  max mem: 1669
+Test:  [16600/50000]  eta: 1:08:47    time: 0.1138  data: 0.0014  max mem: 1669
+Test:  [16700/50000]  eta: 1:08:33    time: 0.1137  data: 0.0013  max mem: 1669
+Test:  [16800/50000]  eta: 1:08:20    time: 0.1246  data: 0.0018  max mem: 1669
+Test:  [16900/50000]  eta: 1:08:08    time: 0.1145  data: 0.0013  max mem: 1669
+Test:  [17000/50000]  eta: 1:07:57    time: 0.1370  data: 0.0021  max mem: 1669
+Test:  [17100/50000]  eta: 1:07:45    time: 0.1313  data: 0.0020  max mem: 1669
+Test:  [17200/50000]  eta: 1:07:31    time: 0.1326  data: 0.0021  max mem: 1669
+Test:  [17300/50000]  eta: 1:07:18    time: 0.1149  data: 0.0013  max mem: 1669
+Test:  [17400/50000]  eta: 1:07:05    time: 0.1171  data: 0.0014  max mem: 1669
+Test:  [17500/50000]  eta: 1:06:53    time: 0.1149  data: 0.0014  max mem: 1669
+Test:  [17600/50000]  eta: 1:06:42    time: 0.1421  data: 0.0021  max mem: 1669
+Test:  [17700/50000]  eta: 1:06:28    time: 0.1150  data: 0.0014  max mem: 1669
+Test:  [17800/50000]  eta: 1:06:16    time: 0.1149  data: 0.0013  max mem: 1669
+Test:  [17900/50000]  eta: 1:06:03    time: 0.1279  data: 0.0018  max mem: 1669
+Test:  [18000/50000]  eta: 1:05:50    time: 0.1159  data: 0.0013  max mem: 1669
+Test:  [18100/50000]  eta: 1:05:38    time: 0.1385  data: 0.0021  max mem: 1669
+Test:  [18200/50000]  eta: 1:05:29    time: 0.1311  data: 0.0020  max mem: 1669
+Test:  [18300/50000]  eta: 1:05:18    time: 0.1146  data: 0.0014  max mem: 1669
+Test:  [18400/50000]  eta: 1:05:05    time: 0.1238  data: 0.0016  max mem: 1669
+Test:  [18500/50000]  eta: 1:04:52    time: 0.1148  data: 0.0014  max mem: 1669
+Test:  [18600/50000]  eta: 1:04:38    time: 0.1144  data: 0.0014  max mem: 1669
+Test:  [18700/50000]  eta: 1:04:25    time: 0.1149  data: 0.0013  max mem: 1669
+Test:  [18800/50000]  eta: 1:04:12    time: 0.1153  data: 0.0013  max mem: 1669
+Test:  [18900/50000]  eta: 1:03:58    time: 0.1163  data: 0.0013  max mem: 1669
+Test:  [19000/50000]  eta: 1:03:45    time: 0.1152  data: 0.0013  max mem: 1669
+Test:  [19100/50000]  eta: 1:03:32    time: 0.1176  data: 0.0014  max mem: 1669
+Test:  [19200/50000]  eta: 1:03:21    time: 0.1192  data: 0.0014  max mem: 1669
+Test:  [19300/50000]  eta: 1:03:07    time: 0.1138  data: 0.0014  max mem: 1669
+Test:  [19400/50000]  eta: 1:02:54    time: 0.1150  data: 0.0013  max mem: 1669
+Test:  [19500/50000]  eta: 1:02:40    time: 0.1148  data: 0.0013  max mem: 1669
+Test:  [19600/50000]  eta: 1:02:27    time: 0.1168  data: 0.0013  max mem: 1669
+Test:  [19700/50000]  eta: 1:02:13    time: 0.1149  data: 0.0013  max mem: 1669
+Test:  [19800/50000]  eta: 1:02:00    time: 0.1165  data: 0.0013  max mem: 1669
+Test:  [19900/50000]  eta: 1:01:48    time: 0.1154  data: 0.0013  max mem: 1669
+Test:  [20000/50000]  eta: 1:01:34    time: 0.1142  data: 0.0013  max mem: 1669
+Test:  [20100/50000]  eta: 1:01:21    time: 0.1140  data: 0.0013  max mem: 1669
+Test:  [20200/50000]  eta: 1:01:11    time: 0.1421  data: 0.0023  max mem: 1669
+Test:  [20300/50000]  eta: 1:00:59    time: 0.1150  data: 0.0012  max mem: 1669
+Test:  [20400/50000]  eta: 1:00:46    time: 0.1141  data: 0.0013  max mem: 1669
+Test:  [20500/50000]  eta: 1:00:32    time: 0.1128  data: 0.0013  max mem: 1669
+Test:  [20600/50000]  eta: 1:00:18    time: 0.1144  data: 0.0015  max mem: 1669
+Test:  [20700/50000]  eta: 1:00:05    time: 0.1154  data: 0.0014  max mem: 1669
+Test:  [20800/50000]  eta: 0:59:51    time: 0.1144  data: 0.0013  max mem: 1669
+Test:  [20900/50000]  eta: 0:59:40    time: 0.1417  data: 0.0022  max mem: 1669
+Test:  [21000/50000]  eta: 0:59:27    time: 0.1252  data: 0.0017  max mem: 1669
+Test:  [21100/50000]  eta: 0:59:15    time: 0.1416  data: 0.0021  max mem: 1669
+Test:  [21200/50000]  eta: 0:59:02    time: 0.1196  data: 0.0015  max mem: 1669
+Test:  [21300/50000]  eta: 0:58:52    time: 0.1364  data: 0.0017  max mem: 1669
+Test:  [21400/50000]  eta: 0:58:40    time: 0.1382  data: 0.0021  max mem: 1669
+Test:  [21500/50000]  eta: 0:58:28    time: 0.1236  data: 0.0017  max mem: 1669
+Test:  [21600/50000]  eta: 0:58:16    time: 0.1141  data: 0.0013  max mem: 1669
+Test:  [21700/50000]  eta: 0:58:05    time: 0.1180  data: 0.0015  max mem: 1669
+Test:  [21800/50000]  eta: 0:57:52    time: 0.1385  data: 0.0020  max mem: 1669
+Test:  [21900/50000]  eta: 0:57:42    time: 0.1420  data: 0.0021  max mem: 1669
+Test:  [22000/50000]  eta: 0:57:31    time: 0.1308  data: 0.0016  max mem: 1669
+Test:  [22100/50000]  eta: 0:57:18    time: 0.1173  data: 0.0015  max mem: 1669
+Test:  [22200/50000]  eta: 0:57:06    time: 0.1153  data: 0.0013  max mem: 1669
+Test:  [22300/50000]  eta: 0:56:54    time: 0.1308  data: 0.0019  max mem: 1669
+Test:  [22400/50000]  eta: 0:56:42    time: 0.1319  data: 0.0020  max mem: 1669
+Test:  [22500/50000]  eta: 0:56:31    time: 0.1304  data: 0.0024  max mem: 1669
+Test:  [22600/50000]  eta: 0:56:19    time: 0.1178  data: 0.0022  max mem: 1669
+Test:  [22700/50000]  eta: 0:56:07    time: 0.1275  data: 0.0017  max mem: 1669
+Test:  [22800/50000]  eta: 0:55:55    time: 0.1214  data: 0.0015  max mem: 1669
+Test:  [22900/50000]  eta: 0:55:42    time: 0.1148  data: 0.0014  max mem: 1669
+Test:  [23000/50000]  eta: 0:55:30    time: 0.1437  data: 0.0020  max mem: 1669
+Test:  [23100/50000]  eta: 0:55:20    time: 0.1483  data: 0.0021  max mem: 1669
+Test:  [23200/50000]  eta: 0:55:09    time: 0.1193  data: 0.0015  max mem: 1669
+Test:  [23300/50000]  eta: 0:54:58    time: 0.1376  data: 0.0021  max mem: 1669
+Test:  [23400/50000]  eta: 0:54:45    time: 0.1211  data: 0.0020  max mem: 1669
+Test:  [23500/50000]  eta: 0:54:32    time: 0.1386  data: 0.0019  max mem: 1669
+Test:  [23600/50000]  eta: 0:54:19    time: 0.1148  data: 0.0013  max mem: 1669
+Test:  [23700/50000]  eta: 0:54:06    time: 0.1394  data: 0.0019  max mem: 1669
+Test:  [23800/50000]  eta: 0:53:54    time: 0.1152  data: 0.0016  max mem: 1669
+Test:  [23900/50000]  eta: 0:53:42    time: 0.1198  data: 0.0015  max mem: 1669
+Test:  [24000/50000]  eta: 0:53:30    time: 0.1164  data: 0.0015  max mem: 1669
+Test:  [24100/50000]  eta: 0:53:17    time: 0.1209  data: 0.0015  max mem: 1669
+Test:  [24200/50000]  eta: 0:53:06    time: 0.1526  data: 0.0023  max mem: 1669
+Test:  [24300/50000]  eta: 0:52:54    time: 0.1241  data: 0.0017  max mem: 1669
+Test:  [24400/50000]  eta: 0:52:42    time: 0.1238  data: 0.0018  max mem: 1669
+Test:  [24500/50000]  eta: 0:52:29    time: 0.1143  data: 0.0013  max mem: 1669
+Test:  [24600/50000]  eta: 0:52:17    time: 0.1345  data: 0.0023  max mem: 1669
+Test:  [24700/50000]  eta: 0:52:05    time: 0.1145  data: 0.0013  max mem: 1669
+Test:  [24800/50000]  eta: 0:51:52    time: 0.1146  data: 0.0013  max mem: 1669
+Test:  [24900/50000]  eta: 0:51:39    time: 0.1171  data: 0.0015  max mem: 1669
+Test:  [25000/50000]  eta: 0:51:26    time: 0.1155  data: 0.0013  max mem: 1669
+Test:  [25100/50000]  eta: 0:51:15    time: 0.1298  data: 0.0018  max mem: 1669
+Test:  [25200/50000]  eta: 0:51:03    time: 0.1140  data: 0.0013  max mem: 1669
+Test:  [25300/50000]  eta: 0:50:51    time: 0.1444  data: 0.0022  max mem: 1669
+Test:  [25400/50000]  eta: 0:50:38    time: 0.1161  data: 0.0019  max mem: 1669
+Test:  [25500/50000]  eta: 0:50:26    time: 0.1143  data: 0.0014  max mem: 1669
+Test:  [25600/50000]  eta: 0:50:14    time: 0.1403  data: 0.0020  max mem: 1669
+Test:  [25700/50000]  eta: 0:50:01    time: 0.1159  data: 0.0013  max mem: 1669
+Test:  [25800/50000]  eta: 0:49:48    time: 0.1187  data: 0.0015  max mem: 1669
+Test:  [25900/50000]  eta: 0:49:35    time: 0.1141  data: 0.0014  max mem: 1669
+Test:  [26000/50000]  eta: 0:49:22    time: 0.1142  data: 0.0014  max mem: 1669
+Test:  [26100/50000]  eta: 0:49:10    time: 0.1423  data: 0.0023  max mem: 1669
+Test:  [26200/50000]  eta: 0:48:59    time: 0.1279  data: 0.0018  max mem: 1669
+Test:  [26300/50000]  eta: 0:48:47    time: 0.1446  data: 0.0022  max mem: 1669
+Test:  [26400/50000]  eta: 0:48:35    time: 0.1138  data: 0.0015  max mem: 1669
+Test:  [26500/50000]  eta: 0:48:23    time: 0.1227  data: 0.0017  max mem: 1669
+Test:  [26600/50000]  eta: 0:48:10    time: 0.1159  data: 0.0014  max mem: 1669
+Test:  [26700/50000]  eta: 0:47:57    time: 0.1231  data: 0.0016  max mem: 1669
+Test:  [26800/50000]  eta: 0:47:46    time: 0.1260  data: 0.0018  max mem: 1669
+Test:  [26900/50000]  eta: 0:47:34    time: 0.1259  data: 0.0018  max mem: 1669
+Test:  [27000/50000]  eta: 0:47:22    time: 0.1245  data: 0.0017  max mem: 1669
+Test:  [27100/50000]  eta: 0:47:09    time: 0.1145  data: 0.0013  max mem: 1669
+Test:  [27200/50000]  eta: 0:46:57    time: 0.1300  data: 0.0020  max mem: 1669
+Test:  [27300/50000]  eta: 0:46:45    time: 0.1144  data: 0.0014  max mem: 1669
+Test:  [27400/50000]  eta: 0:46:32    time: 0.1149  data: 0.0013  max mem: 1669
+Test:  [27500/50000]  eta: 0:46:19    time: 0.1139  data: 0.0013  max mem: 1669
+Test:  [27600/50000]  eta: 0:46:06    time: 0.1182  data: 0.0015  max mem: 1669
+Test:  [27700/50000]  eta: 0:45:55    time: 0.1459  data: 0.0023  max mem: 1669
+Test:  [27800/50000]  eta: 0:45:43    time: 0.1144  data: 0.0013  max mem: 1669
+Test:  [27900/50000]  eta: 0:45:32    time: 0.1327  data: 0.0020  max mem: 1669
+Test:  [28000/50000]  eta: 0:45:19    time: 0.1250  data: 0.0016  max mem: 1669
+Test:  [28100/50000]  eta: 0:45:07    time: 0.1151  data: 0.0013  max mem: 1669
+Test:  [28200/50000]  eta: 0:44:55    time: 0.1281  data: 0.0017  max mem: 1669
+Test:  [28300/50000]  eta: 0:44:43    time: 0.1431  data: 0.0022  max mem: 1669
+Test:  [28400/50000]  eta: 0:44:32    time: 0.1287  data: 0.0018  max mem: 1669
+Test:  [28500/50000]  eta: 0:44:20    time: 0.1476  data: 0.0022  max mem: 1669
+Test:  [28600/50000]  eta: 0:44:09    time: 0.1166  data: 0.0013  max mem: 1669
+Test:  [28700/50000]  eta: 0:43:56    time: 0.1430  data: 0.0021  max mem: 1669
+Test:  [28800/50000]  eta: 0:43:44    time: 0.1132  data: 0.0014  max mem: 1669
+Test:  [28900/50000]  eta: 0:43:31    time: 0.1157  data: 0.0013  max mem: 1669
+Test:  [29000/50000]  eta: 0:43:18    time: 0.1148  data: 0.0013  max mem: 1669
+Test:  [29100/50000]  eta: 0:43:05    time: 0.1245  data: 0.0016  max mem: 1669
+Test:  [29200/50000]  eta: 0:42:52    time: 0.1139  data: 0.0014  max mem: 1669
+Test:  [29300/50000]  eta: 0:42:40    time: 0.1148  data: 0.0013  max mem: 1669
+Test:  [29400/50000]  eta: 0:42:27    time: 0.1136  data: 0.0014  max mem: 1669
+Test:  [29500/50000]  eta: 0:42:15    time: 0.1355  data: 0.0019  max mem: 1669
+Test:  [29600/50000]  eta: 0:42:02    time: 0.1163  data: 0.0014  max mem: 1669
+Test:  [29700/50000]  eta: 0:41:49    time: 0.1154  data: 0.0014  max mem: 1669
+Test:  [29800/50000]  eta: 0:41:37    time: 0.1419  data: 0.0021  max mem: 1669
+Test:  [29900/50000]  eta: 0:41:24    time: 0.1153  data: 0.0013  max mem: 1669
+Test:  [30000/50000]  eta: 0:41:11    time: 0.1145  data: 0.0013  max mem: 1669
+Test:  [30100/50000]  eta: 0:40:59    time: 0.1327  data: 0.0018  max mem: 1669
+Test:  [30200/50000]  eta: 0:40:46    time: 0.1282  data: 0.0017  max mem: 1669
+Test:  [30300/50000]  eta: 0:40:34    time: 0.1146  data: 0.0013  max mem: 1669
+Test:  [30400/50000]  eta: 0:40:22    time: 0.1227  data: 0.0016  max mem: 1669
+Test:  [30500/50000]  eta: 0:40:09    time: 0.1139  data: 0.0013  max mem: 1669
+Test:  [30600/50000]  eta: 0:39:56    time: 0.1221  data: 0.0016  max mem: 1669
+Test:  [30700/50000]  eta: 0:39:44    time: 0.1153  data: 0.0014  max mem: 1669
+Test:  [30800/50000]  eta: 0:39:31    time: 0.1142  data: 0.0014  max mem: 1669
+Test:  [30900/50000]  eta: 0:39:18    time: 0.1139  data: 0.0013  max mem: 1669
+Test:  [31000/50000]  eta: 0:39:06    time: 0.1140  data: 0.0013  max mem: 1669
+Test:  [31100/50000]  eta: 0:38:53    time: 0.1407  data: 0.0021  max mem: 1669
+Test:  [31200/50000]  eta: 0:38:42    time: 0.1402  data: 0.0021  max mem: 1669
+Test:  [31300/50000]  eta: 0:38:29    time: 0.1137  data: 0.0014  max mem: 1669
+Test:  [31400/50000]  eta: 0:38:17    time: 0.1200  data: 0.0018  max mem: 1669
+Test:  [31500/50000]  eta: 0:38:04    time: 0.1146  data: 0.0013  max mem: 1669
+Test:  [31600/50000]  eta: 0:37:51    time: 0.1207  data: 0.0016  max mem: 1669
+Test:  [31700/50000]  eta: 0:37:40    time: 0.1293  data: 0.0017  max mem: 1669
+Test:  [31800/50000]  eta: 0:37:28    time: 0.1440  data: 0.0020  max mem: 1669
+Test:  [31900/50000]  eta: 0:37:16    time: 0.1371  data: 0.0022  max mem: 1669
+Test:  [32000/50000]  eta: 0:37:04    time: 0.1129  data: 0.0015  max mem: 1669
+Test:  [32100/50000]  eta: 0:36:52    time: 0.1432  data: 0.0023  max mem: 1669
+Test:  [32200/50000]  eta: 0:36:40    time: 0.1262  data: 0.0017  max mem: 1669
+Test:  [32300/50000]  eta: 0:36:27    time: 0.1139  data: 0.0013  max mem: 1669
+Test:  [32400/50000]  eta: 0:36:15    time: 0.1197  data: 0.0015  max mem: 1669
+Test:  [32500/50000]  eta: 0:36:02    time: 0.1134  data: 0.0013  max mem: 1669
+Test:  [32600/50000]  eta: 0:35:50    time: 0.1139  data: 0.0013  max mem: 1669
+Test:  [32700/50000]  eta: 0:35:37    time: 0.1081  data: 0.0012  max mem: 1669
+Test:  [32800/50000]  eta: 0:35:25    time: 0.1197  data: 0.0015  max mem: 1669
+Test:  [32900/50000]  eta: 0:35:13    time: 0.1444  data: 0.0022  max mem: 1669
+Test:  [33000/50000]  eta: 0:35:00    time: 0.1121  data: 0.0013  max mem: 1669
+Test:  [33100/50000]  eta: 0:34:48    time: 0.1210  data: 0.0016  max mem: 1669
+Test:  [33200/50000]  eta: 0:34:36    time: 0.1260  data: 0.0017  max mem: 1669
+Test:  [33300/50000]  eta: 0:34:24    time: 0.1411  data: 0.0022  max mem: 1669
+Test:  [33400/50000]  eta: 0:34:12    time: 0.1386  data: 0.0022  max mem: 1669
+Test:  [33500/50000]  eta: 0:34:00    time: 0.1190  data: 0.0016  max mem: 1669
+Test:  [33600/50000]  eta: 0:33:49    time: 0.1295  data: 0.0018  max mem: 1669
+Test:  [33700/50000]  eta: 0:33:36    time: 0.1143  data: 0.0013  max mem: 1669
+Test:  [33800/50000]  eta: 0:33:23    time: 0.1359  data: 0.0021  max mem: 1669
+Test:  [33900/50000]  eta: 0:33:11    time: 0.1154  data: 0.0015  max mem: 1669
+Test:  [34000/50000]  eta: 0:32:58    time: 0.1145  data: 0.0013  max mem: 1669
+Test:  [34100/50000]  eta: 0:32:46    time: 0.1443  data: 0.0022  max mem: 1669
+Test:  [34200/50000]  eta: 0:32:34    time: 0.1309  data: 0.0019  max mem: 1669
+Test:  [34300/50000]  eta: 0:32:22    time: 0.1134  data: 0.0013  max mem: 1669
+Test:  [34400/50000]  eta: 0:32:09    time: 0.1173  data: 0.0015  max mem: 1669
+Test:  [34500/50000]  eta: 0:31:56    time: 0.1130  data: 0.0013  max mem: 1669
+Test:  [34600/50000]  eta: 0:31:44    time: 0.1395  data: 0.0021  max mem: 1669
+Test:  [34700/50000]  eta: 0:31:32    time: 0.1472  data: 0.0023  max mem: 1669
+Test:  [34800/50000]  eta: 0:31:20    time: 0.1139  data: 0.0014  max mem: 1669
+Test:  [34900/50000]  eta: 0:31:07    time: 0.1142  data: 0.0012  max mem: 1669
+Test:  [35000/50000]  eta: 0:30:54    time: 0.1132  data: 0.0013  max mem: 1669
+Test:  [35100/50000]  eta: 0:30:41    time: 0.1144  data: 0.0013  max mem: 1669
+Test:  [35200/50000]  eta: 0:30:29    time: 0.1282  data: 0.0019  max mem: 1669
+Test:  [35300/50000]  eta: 0:30:17    time: 0.1239  data: 0.0016  max mem: 1669
+Test:  [35400/50000]  eta: 0:30:05    time: 0.1333  data: 0.0021  max mem: 1669
+Test:  [35500/50000]  eta: 0:29:53    time: 0.1271  data: 0.0018  max mem: 1669
+Test:  [35600/50000]  eta: 0:29:40    time: 0.1140  data: 0.0013  max mem: 1669
+Test:  [35700/50000]  eta: 0:29:27    time: 0.1146  data: 0.0013  max mem: 1669
+Test:  [35800/50000]  eta: 0:29:15    time: 0.1139  data: 0.0013  max mem: 1669
+Test:  [35900/50000]  eta: 0:29:03    time: 0.1141  data: 0.0015  max mem: 1669
+Test:  [36000/50000]  eta: 0:28:50    time: 0.1167  data: 0.0014  max mem: 1669
+Test:  [36100/50000]  eta: 0:28:38    time: 0.1162  data: 0.0014  max mem: 1669
+Test:  [36200/50000]  eta: 0:28:26    time: 0.1272  data: 0.0018  max mem: 1669
+Test:  [36300/50000]  eta: 0:28:13    time: 0.1133  data: 0.0013  max mem: 1669
+Test:  [36400/50000]  eta: 0:28:01    time: 0.1469  data: 0.0022  max mem: 1669
+Test:  [36500/50000]  eta: 0:27:49    time: 0.1140  data: 0.0013  max mem: 1669
+Test:  [36600/50000]  eta: 0:27:36    time: 0.1140  data: 0.0013  max mem: 1669
+Test:  [36700/50000]  eta: 0:27:23    time: 0.1144  data: 0.0013  max mem: 1669
+Test:  [36800/50000]  eta: 0:27:11    time: 0.1395  data: 0.0023  max mem: 1669
+Test:  [36900/50000]  eta: 0:26:58    time: 0.1277  data: 0.0020  max mem: 1669
+Test:  [37000/50000]  eta: 0:26:46    time: 0.1152  data: 0.0015  max mem: 1669
+Test:  [37100/50000]  eta: 0:26:33    time: 0.1153  data: 0.0013  max mem: 1669
+Test:  [37200/50000]  eta: 0:26:21    time: 0.1422  data: 0.0022  max mem: 1669
+Test:  [37300/50000]  eta: 0:26:09    time: 0.1129  data: 0.0013  max mem: 1669
+Test:  [37400/50000]  eta: 0:25:56    time: 0.1136  data: 0.0013  max mem: 1669
+Test:  [37500/50000]  eta: 0:25:44    time: 0.1368  data: 0.0024  max mem: 1669
+Test:  [37600/50000]  eta: 0:25:32    time: 0.1151  data: 0.0015  max mem: 1669
+Test:  [37700/50000]  eta: 0:25:20    time: 0.1358  data: 0.0025  max mem: 1669
+Test:  [37800/50000]  eta: 0:25:07    time: 0.1140  data: 0.0013  max mem: 1669
+Test:  [37900/50000]  eta: 0:24:54    time: 0.1135  data: 0.0014  max mem: 1669
+Test:  [38000/50000]  eta: 0:24:42    time: 0.1152  data: 0.0013  max mem: 1669
+Test:  [38100/50000]  eta: 0:24:29    time: 0.1160  data: 0.0015  max mem: 1669
+Test:  [38200/50000]  eta: 0:24:16    time: 0.1172  data: 0.0017  max mem: 1669
+Test:  [38300/50000]  eta: 0:24:04    time: 0.1139  data: 0.0016  max mem: 1669
+Test:  [38400/50000]  eta: 0:23:51    time: 0.1203  data: 0.0018  max mem: 1669
+Test:  [38500/50000]  eta: 0:23:39    time: 0.1136  data: 0.0014  max mem: 1669
+Test:  [38600/50000]  eta: 0:23:26    time: 0.1188  data: 0.0016  max mem: 1669
+Test:  [38700/50000]  eta: 0:23:14    time: 0.1181  data: 0.0017  max mem: 1669
+Test:  [38800/50000]  eta: 0:23:01    time: 0.1246  data: 0.0018  max mem: 1669
+Test:  [38900/50000]  eta: 0:22:49    time: 0.1213  data: 0.0017  max mem: 1669
+Test:  [39000/50000]  eta: 0:22:36    time: 0.1174  data: 0.0015  max mem: 1669
+Test:  [39100/50000]  eta: 0:22:24    time: 0.1207  data: 0.0018  max mem: 1669
+Test:  [39200/50000]  eta: 0:22:11    time: 0.1146  data: 0.0014  max mem: 1669
+Test:  [39300/50000]  eta: 0:21:59    time: 0.1140  data: 0.0014  max mem: 1669
+Test:  [39400/50000]  eta: 0:21:46    time: 0.1226  data: 0.0017  max mem: 1669
+Test:  [39500/50000]  eta: 0:21:34    time: 0.1170  data: 0.0014  max mem: 1669
+Test:  [39600/50000]  eta: 0:21:22    time: 0.1215  data: 0.0018  max mem: 1669
+Test:  [39700/50000]  eta: 0:21:09    time: 0.1173  data: 0.0015  max mem: 1669
+Test:  [39800/50000]  eta: 0:20:57    time: 0.1148  data: 0.0014  max mem: 1669
+Test:  [39900/50000]  eta: 0:20:44    time: 0.1142  data: 0.0013  max mem: 1669
+Test:  [40000/50000]  eta: 0:20:32    time: 0.1289  data: 0.0019  max mem: 1669
+Test:  [40100/50000]  eta: 0:20:20    time: 0.1152  data: 0.0013  max mem: 1669
+Test:  [40200/50000]  eta: 0:20:07    time: 0.1154  data: 0.0014  max mem: 1669
+Test:  [40300/50000]  eta: 0:19:55    time: 0.1429  data: 0.0022  max mem: 1669
+Test:  [40400/50000]  eta: 0:19:43    time: 0.1141  data: 0.0013  max mem: 1669
+Test:  [40500/50000]  eta: 0:19:31    time: 0.1356  data: 0.0019  max mem: 1669
+Test:  [40600/50000]  eta: 0:19:19    time: 0.1131  data: 0.0014  max mem: 1669
+Test:  [40700/50000]  eta: 0:19:06    time: 0.1343  data: 0.0019  max mem: 1669
+Test:  [40800/50000]  eta: 0:18:54    time: 0.1399  data: 0.0021  max mem: 1669
+Test:  [40900/50000]  eta: 0:18:42    time: 0.1377  data: 0.0020  max mem: 1669
+Test:  [41000/50000]  eta: 0:18:30    time: 0.1439  data: 0.0021  max mem: 1669
+Test:  [41100/50000]  eta: 0:18:18    time: 0.1077  data: 0.0013  max mem: 1669
+Test:  [41200/50000]  eta: 0:18:05    time: 0.1151  data: 0.0013  max mem: 1669
+Test:  [41300/50000]  eta: 0:17:53    time: 0.1147  data: 0.0013  max mem: 1669
+Test:  [41400/50000]  eta: 0:17:40    time: 0.1151  data: 0.0014  max mem: 1669
+Test:  [41500/50000]  eta: 0:17:28    time: 0.1268  data: 0.0017  max mem: 1669
+Test:  [41600/50000]  eta: 0:17:16    time: 0.1234  data: 0.0015  max mem: 1669
+Test:  [41700/50000]  eta: 0:17:03    time: 0.1154  data: 0.0013  max mem: 1669
+Test:  [41800/50000]  eta: 0:16:51    time: 0.1153  data: 0.0016  max mem: 1669
+Test:  [41900/50000]  eta: 0:16:38    time: 0.1145  data: 0.0013  max mem: 1669
+Test:  [42000/50000]  eta: 0:16:26    time: 0.1154  data: 0.0013  max mem: 1669
+Test:  [42100/50000]  eta: 0:16:14    time: 0.1141  data: 0.0013  max mem: 1669
+Test:  [42200/50000]  eta: 0:16:01    time: 0.1159  data: 0.0013  max mem: 1669
+Test:  [42300/50000]  eta: 0:15:49    time: 0.1147  data: 0.0013  max mem: 1669
+Test:  [42400/50000]  eta: 0:15:37    time: 0.1284  data: 0.0018  max mem: 1669
+Test:  [42500/50000]  eta: 0:15:24    time: 0.1201  data: 0.0015  max mem: 1669
+Test:  [42600/50000]  eta: 0:15:12    time: 0.1159  data: 0.0013  max mem: 1669
+Test:  [42700/50000]  eta: 0:15:00    time: 0.1316  data: 0.0018  max mem: 1669
+Test:  [42800/50000]  eta: 0:14:47    time: 0.1436  data: 0.0023  max mem: 1669
+Test:  [42900/50000]  eta: 0:14:35    time: 0.1158  data: 0.0013  max mem: 1669
+Test:  [43000/50000]  eta: 0:14:23    time: 0.1427  data: 0.0022  max mem: 1669
+Test:  [43100/50000]  eta: 0:14:10    time: 0.1152  data: 0.0013  max mem: 1669
+Test:  [43200/50000]  eta: 0:13:58    time: 0.1326  data: 0.0019  max mem: 1669
+Test:  [43300/50000]  eta: 0:13:46    time: 0.1472  data: 0.0022  max mem: 1669
+Test:  [43400/50000]  eta: 0:13:34    time: 0.1138  data: 0.0014  max mem: 1669
+Test:  [43500/50000]  eta: 0:13:21    time: 0.1206  data: 0.0019  max mem: 1669
+Test:  [43600/50000]  eta: 0:13:09    time: 0.1183  data: 0.0014  max mem: 1669
+Test:  [43700/50000]  eta: 0:12:57    time: 0.1178  data: 0.0015  max mem: 1669
+Test:  [43800/50000]  eta: 0:12:44    time: 0.1138  data: 0.0013  max mem: 1669
+Test:  [43900/50000]  eta: 0:12:32    time: 0.1454  data: 0.0022  max mem: 1669
+Test:  [44000/50000]  eta: 0:12:20    time: 0.1309  data: 0.0018  max mem: 1669
+Test:  [44100/50000]  eta: 0:12:07    time: 0.1443  data: 0.0022  max mem: 1669
+Test:  [44200/50000]  eta: 0:11:55    time: 0.1142  data: 0.0014  max mem: 1669
+Test:  [44300/50000]  eta: 0:11:43    time: 0.1156  data: 0.0013  max mem: 1669
+Test:  [44400/50000]  eta: 0:11:30    time: 0.1156  data: 0.0014  max mem: 1669
+Test:  [44500/50000]  eta: 0:11:18    time: 0.1136  data: 0.0014  max mem: 1669
+Test:  [44600/50000]  eta: 0:11:05    time: 0.1139  data: 0.0013  max mem: 1669
+Test:  [44700/50000]  eta: 0:10:53    time: 0.1146  data: 0.0012  max mem: 1669
+Test:  [44800/50000]  eta: 0:10:41    time: 0.1146  data: 0.0013  max mem: 1669
+Test:  [44900/50000]  eta: 0:10:28    time: 0.1148  data: 0.0013  max mem: 1669
+Test:  [45000/50000]  eta: 0:10:16    time: 0.1375  data: 0.0019  max mem: 1669
+Test:  [45100/50000]  eta: 0:10:04    time: 0.1159  data: 0.0013  max mem: 1669
+Test:  [45200/50000]  eta: 0:09:51    time: 0.1482  data: 0.0022  max mem: 1669
+Test:  [45300/50000]  eta: 0:09:39    time: 0.1208  data: 0.0016  max mem: 1669
+Test:  [45400/50000]  eta: 0:09:27    time: 0.1217  data: 0.0014  max mem: 1669
+Test:  [45500/50000]  eta: 0:09:14    time: 0.1254  data: 0.0015  max mem: 1669
+Test:  [45600/50000]  eta: 0:09:02    time: 0.1246  data: 0.0015  max mem: 1669
+Test:  [45700/50000]  eta: 0:08:50    time: 0.1300  data: 0.0019  max mem: 1669
+Test:  [45800/50000]  eta: 0:08:38    time: 0.1420  data: 0.0020  max mem: 1669
+Test:  [45900/50000]  eta: 0:08:25    time: 0.1149  data: 0.0013  max mem: 1669
+Test:  [46000/50000]  eta: 0:08:13    time: 0.1152  data: 0.0013  max mem: 1669
+Test:  [46100/50000]  eta: 0:08:01    time: 0.1398  data: 0.0022  max mem: 1669
+Test:  [46200/50000]  eta: 0:07:48    time: 0.1150  data: 0.0013  max mem: 1669
+Test:  [46300/50000]  eta: 0:07:36    time: 0.1408  data: 0.0022  max mem: 1669
+Test:  [46400/50000]  eta: 0:07:24    time: 0.1273  data: 0.0019  max mem: 1669
+Test:  [46500/50000]  eta: 0:07:11    time: 0.1142  data: 0.0013  max mem: 1669
+Test:  [46600/50000]  eta: 0:06:59    time: 0.1315  data: 0.0021  max mem: 1669
+Test:  [46700/50000]  eta: 0:06:47    time: 0.1145  data: 0.0013  max mem: 1669
+Test:  [46800/50000]  eta: 0:06:34    time: 0.1140  data: 0.0014  max mem: 1669
+Test:  [46900/50000]  eta: 0:06:22    time: 0.1211  data: 0.0016  max mem: 1669
+Test:  [47000/50000]  eta: 0:06:10    time: 0.1151  data: 0.0013  max mem: 1669
+Test:  [47100/50000]  eta: 0:05:57    time: 0.1209  data: 0.0017  max mem: 1669
+Test:  [47200/50000]  eta: 0:05:45    time: 0.1156  data: 0.0013  max mem: 1669
+Test:  [47300/50000]  eta: 0:05:33    time: 0.1090  data: 0.0012  max mem: 1669
+Test:  [47400/50000]  eta: 0:05:20    time: 0.1266  data: 0.0017  max mem: 1669
+Test:  [47500/50000]  eta: 0:05:08    time: 0.1142  data: 0.0013  max mem: 1669
+Test:  [47600/50000]  eta: 0:04:55    time: 0.1140  data: 0.0013  max mem: 1669
+Test:  [47700/50000]  eta: 0:04:43    time: 0.1148  data: 0.0013  max mem: 1669
+Test:  [47800/50000]  eta: 0:04:31    time: 0.1454  data: 0.0022  max mem: 1669
+Test:  [47900/50000]  eta: 0:04:18    time: 0.1147  data: 0.0014  max mem: 1669
+Test:  [48000/50000]  eta: 0:04:06    time: 0.1146  data: 0.0014  max mem: 1669
+Test:  [48100/50000]  eta: 0:03:54    time: 0.1242  data: 0.0023  max mem: 1669
+Test:  [48200/50000]  eta: 0:03:41    time: 0.1149  data: 0.0013  max mem: 1669
+Test:  [48300/50000]  eta: 0:03:29    time: 0.1167  data: 0.0014  max mem: 1669
+Test:  [48400/50000]  eta: 0:03:17    time: 0.1145  data: 0.0013  max mem: 1669
+Test:  [48500/50000]  eta: 0:03:04    time: 0.1261  data: 0.0017  max mem: 1669
+Test:  [48600/50000]  eta: 0:02:52    time: 0.1148  data: 0.0014  max mem: 1669
+Test:  [48700/50000]  eta: 0:02:40    time: 0.1221  data: 0.0016  max mem: 1669
+Test:  [48800/50000]  eta: 0:02:27    time: 0.1149  data: 0.0014  max mem: 1669
+Test:  [48900/50000]  eta: 0:02:15    time: 0.1361  data: 0.0021  max mem: 1669
+Test:  [49000/50000]  eta: 0:02:03    time: 0.1146  data: 0.0016  max mem: 1669
+Test:  [49100/50000]  eta: 0:01:50    time: 0.1281  data: 0.0020  max mem: 1669
+Test:  [49200/50000]  eta: 0:01:38    time: 0.1210  data: 0.0018  max mem: 1669
+Test:  [49300/50000]  eta: 0:01:26    time: 0.1146  data: 0.0013  max mem: 1669
+Test:  [49400/50000]  eta: 0:01:13    time: 0.1145  data: 0.0014  max mem: 1669
+Test:  [49500/50000]  eta: 0:01:01    time: 0.1255  data: 0.0018  max mem: 1669
+Test:  [49600/50000]  eta: 0:00:49    time: 0.1143  data: 0.0013  max mem: 1669
+Test:  [49700/50000]  eta: 0:00:36    time: 0.1163  data: 0.0015  max mem: 1669
+Test:  [49800/50000]  eta: 0:00:24    time: 0.1194  data: 0.0014  max mem: 1669
+Test:  [49900/50000]  eta: 0:00:12    time: 0.1329  data: 0.0018  max mem: 1669
+/home/sangbeom_lee/anaconda3/envs/lavt/lib/python3.7/site-packages/torchvision/transforms/functional.py:365: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  "Argument interpolation should be of type InterpolationMode instead of int. "
+/home/sangbeom_lee/anaconda3/envs/lavt/lib/python3.7/site-packages/torchvision/transforms/functional.py:365: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  "Argument interpolation should be of type InterpolationMode instead of int. "
+/home/sangbeom_lee/anaconda3/envs/lavt/lib/python3.7/site-packages/torchvision/transforms/functional.py:365: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  "Argument interpolation should be of type InterpolationMode instead of int. "
+/home/sangbeom_lee/anaconda3/envs/lavt/lib/python3.7/site-packages/torchvision/transforms/functional.py:365: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  "Argument interpolation should be of type InterpolationMode instead of int. "
+Test: Total time: 1:42:44
+Final results:
+Mean IoU is 84.64
+
+    precision@0.5 = 91.42
+    precision@0.6 = 89.47
+    precision@0.7 = 86.77
+    precision@0.8 = 81.10
+    precision@0.9 = 66.61
+    overall IoU = 91.16
+
+2024-11-21 09:33:06
+2024-11-21 09:33:06
+2024-11-21 09:33:06
