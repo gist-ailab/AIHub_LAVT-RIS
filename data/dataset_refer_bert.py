@@ -48,6 +48,7 @@ class ReferDataset(data.Dataset):
 
         self.input_ids = []
         self.attention_masks = []
+        self.sentence_raw = []
         if args.model == 'lavt_one_xlm':
             self.tokenizer = AutoTokenizer.from_pretrained('xlm-roberta-base')
         else:
@@ -61,6 +62,7 @@ class ReferDataset(data.Dataset):
 
             sentences_for_ref = []
             attentions_for_ref = []
+            sentence_raw_for_ref = []
 
             for i, (el, sent_id) in enumerate(zip(ref['sentences'], ref['sent_ids'])):
                 sentence_raw = el['raw']
@@ -77,9 +79,11 @@ class ReferDataset(data.Dataset):
 
                 sentences_for_ref.append(torch.tensor(padded_input_ids).unsqueeze(0))
                 attentions_for_ref.append(torch.tensor(attention_mask).unsqueeze(0))
+                sentence_raw_for_ref.append(sentence_raw)
 
             self.input_ids.append(sentences_for_ref)
             self.attention_masks.append(attentions_for_ref)
+            self.sentence_raw.append(sentence_raw_for_ref)
 
     def get_classes(self):
         return self.classes
@@ -122,4 +126,12 @@ class ReferDataset(data.Dataset):
             tensor_embeddings = self.input_ids[index][choice_sent]
             attention_mask = self.attention_masks[index][choice_sent]
 
-        return img, target, tensor_embeddings, attention_mask
+        if self.split == 'test':
+            info = {
+                'file_name': this_img['file_name'],
+                'text': self.sentence_raw[index]
+            }
+            return img, target, tensor_embeddings, attention_mask, info
+        else:
+            return img, target, tensor_embeddings, attention_mask
+        

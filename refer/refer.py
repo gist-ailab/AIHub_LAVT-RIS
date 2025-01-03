@@ -74,8 +74,8 @@ class REFER:
                 self.DATA_DIR = osp.join(data_root, 'refcoco')
                 print('Dataset preprocessing...')
                 print('Print list of AIHub Indoor dataset...')
-                self.DATA_DIR = "refer/data/aihub_refcoco_format/indoor_80"
-                self.IMAGE_DIR = "refer/data/aihub_refcoco_format/indoor_80/images"
+                self.DATA_DIR = "refer/data/aihub_refcoco_format/indoor_test_1121"
+                self.IMAGE_DIR = "refer/data/aihub_refcoco_format/indoor_test_1121/images"
                 print('Dataset preprocessing...')
                 print('Print list of AIHub Indoor dataset...')
                 # print(os.listdir(self.IMAGE_DIR))
@@ -83,8 +83,8 @@ class REFER:
                 self.DATA_DIR = osp.join(data_root, 'refcoco')
                 print('Dataset preprocessing...')
                 print('Print list of AIHub Manufact dataset...')
-                self.DATA_DIR = "refer/data/aihub_refcoco_format/manufact_80"
-                self.IMAGE_DIR = "refer/data/aihub_refcoco_format/manufact_80/images"
+                self.DATA_DIR = "refer/data/aihub_refcoco_format/manufact_test_1120"
+                self.IMAGE_DIR = "refer/data/aihub_refcoco_format/manufact_test_1120/images"
                 print('Dataset preprocessing...')
                 print('Print list of AIHub Manufact dataset...')
                 # print(os.listdir(self.IMAGE_DIR))

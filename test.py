@@ -73,7 +73,7 @@ def evaluate(model, data_loader, bert_model, device):
 
     with torch.no_grad():
         for data in metric_logger.log_every(data_loader, 100, header):
-            image, target, sentences, attentions = data
+            image, target, sentences, attentions, info = data
             image, target, sentences, attentions = image.to(device), target.to(device), \
                                                    sentences.to(device), attentions.to(device)
             sentences = sentences.squeeze(1)
@@ -102,39 +102,48 @@ def evaluate(model, data_loader, bert_model, device):
                     seg_correct[n_eval_iou] += (this_iou >= eval_seg_iou)
                 seg_total += 1
 
-                # idx = 0
-                # # print(output_mask.shape)
-                # # print(image.shape)
-                # pred_mask = output_mask[idx]  # Predicted mask
-                # gt_mask = target[idx]      # Ground truth mask
-                # # Visualization code
-                # img_tensor = image[idx]  # Shape: (3, H, W)
-                # # Unnormalize the image
-                # unnormalize = T_t.Normalize(
-                #     mean=[-0.485 / 0.229, -0.456 / 0.224, -0.406 / 0.225],
-                #     std=[1 / 0.229, 1 / 0.224, 1 / 0.225]
-                # )
-                # img_tensor = unnormalize(img_tensor)
-                # img_numpy = img_tensor.cpu().numpy()  # Shape: (3, H, W)
-                # img_numpy = np.transpose(img_numpy, (1, 2, 0))  # Shape: (H, W, 3)
-                # img_numpy = np.clip(img_numpy, 0, 1)
-                # img_numpy = (img_numpy * 255).astype(np.uint8)
+                idx = 0
+                # print(output_mask.shape)
+                # print(image.shape)
+                pred_mask = output_mask[idx]  # Predicted mask
+                gt_mask = target[idx]      # Ground truth mask
+                # Visualization code
+                img_tensor = image[idx]  # Shape: (3, H, W)
+                # Unnormalize the image
+                unnormalize = T_t.Normalize(
+                    mean=[-0.485 / 0.229, -0.456 / 0.224, -0.406 / 0.225],
+                    std=[1 / 0.229, 1 / 0.224, 1 / 0.225]
+                )
+                img_tensor = unnormalize(img_tensor)
+                img_numpy = img_tensor.cpu().numpy()  # Shape: (3, H, W)
+                img_numpy = np.transpose(img_numpy, (1, 2, 0))  # Shape: (H, W, 3)
+                img_numpy = np.clip(img_numpy, 0, 1)
+                img_numpy = (img_numpy * 255).astype(np.uint8)
 
-                # # Overlay masks
-                # vis_pred = overlay_davis(img_numpy, pred_mask)
-                # vis_gt = overlay_davis(img_numpy, gt_mask)
+                # Overlay masks
+                vis_pred = overlay_davis(img_numpy, pred_mask)
+                vis_gt = overlay_davis(img_numpy, gt_mask)
 
-                # # Horizontally stack the two visualizations
+                # Horizontally stack the two visualizations
                 # combined_vis = np.hstack((vis_pred, vis_gt))
 
-                # # Save visualizations
-                # # pred_image = Image.fromarray(vis_pred)
-                # # gt_image = Image.fromarray(vis_gt)
-                # # pred_image.save(f'aihub_pred_vis/visualization_pred_{vis_counter}.jpg')
-                # # gt_image.save(f'aihub_pred_vis/visualization_gt_{vis_counter}.jpg')
-                # combined_image = Image.fromarray(combined_vis)
-                # combined_image.save(f'aihub_pred_vis/visualization_{vis_counter}.jpg')
-                # vis_counter += 1
+                # Save visualizations
+                # pred_image = Image.fromarray(vis_pred)
+                # gt_image = Image.fromarray(vis_gt)
+                # pred_image.save(f'aihub_pred_vis/visualization_pred_{vis_counter}.jpg')
+                # gt_image.save(f'aihub_pred_vis/visualization_gt_{vis_counter}.jpg')
+                file_name = info['file_name'][0].split('.')[0]
+                text_raw = info['text'][0][0].replace('/', '')
+                pred_image = Image.fromarray(vis_pred)
+                gt_image = Image.fromarray(vis_gt)
+                try:
+                    pred_image.save(f'aihub_pred_vis/{file_name}_{text_raw}_pred.jpg')
+                    gt_image.save(f'aihub_pred_vis/{file_name}_{text_raw}_gt.jpg')
+                except OSError:
+                    pred_image.save(f'aihub_pred_vis/{file_name}_{text_raw[:15]}_pred.jpg')
+                    gt_image.save(f'aihub_pred_vis/{file_name}_{text_raw[:15]}_gt.jpg')
+                vis_counter += 1
+                # print(info)
 
 
             del image, target, sentences, attentions, output, output_mask
@@ -170,6 +179,14 @@ def computeIoU(pred_seg, gd_seg):
 
 
 def main(args):
+    print('Command: python test.py --model lavt_one_xlm --swin_type base --dataset aihub_indoor_80 --split test --resume ./checkpoints/model_best_refcoco_indoor_80_uniq.pth --workers 4 --ddp_trained_weights --window12 --img_size 480 2>&1 | tee aihub_indoor_ris_log.txt')
+    import datetime
+    now = datetime.datetime.now()
+    print(now.strftime("%Y-%m-%d %H:%M:%S"))
+    now = datetime.datetime.now()
+    print(now.strftime("%Y-%m-%d %H:%M:%S"))
+    now = datetime.datetime.now()
+    print(now.strftime("%Y-%m-%d %H:%M:%S"))
     device = torch.device(args.device)
     dataset_test, _ = get_dataset(args.split, get_transform(args=args), args)
     test_sampler = torch.utils.data.SequentialSampler(dataset_test)
@@ -193,6 +210,12 @@ def main(args):
         bert_model = None
 
     evaluate(model, data_loader_test, bert_model, device=device)
+    now = datetime.datetime.now()
+    print(now.strftime("%Y-%m-%d %H:%M:%S"))
+    now = datetime.datetime.now()
+    print(now.strftime("%Y-%m-%d %H:%M:%S"))
+    now = datetime.datetime.now()
+    print(now.strftime("%Y-%m-%d %H:%M:%S"))
 
 
 if __name__ == "__main__":

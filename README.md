@@ -3,16 +3,32 @@ Welcome to the official repository for the method presented in
 "LAVT: Language-Aware Vision Transformer for Referring Image Segmentation."
 
 
-## Train with AIHub Data
-제조환경 데이터 학습 코드
+## How to run Docker Image
 ```
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --nproc_per_node 8 --master_port 12345 train.py --model lavt_one_xlm --dataset aihub_manufact_80 --model_id refcoco_manufact_80_uniq_id --batch-size 4 --lr 0.00005 --wd 1e-2 --swin_type base --pretrained_swin_weights ./pretrained_weights/swin_base_patch4_window12_384_22k.pth --epochs 40 --img_size 480 2>&1 | tee ./models/refcoco_manufact_80_uniq_id/output
+docker run --gpus all -it aihub-indoor-lavt
+```
+
+## Preprocessing Data
+1. Locate test data into "refer/data" (e.g. refer/data/원천데이터, refer/data/라벨링데이터)
+2. Run python preprocessing code
+```
+python convert_aihub_to_refcoco_80_uniq_id_val.py
+```
+
+## Train with AIHub Data
+Indoor Data Train
+```
+conda activate lavt
+
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --nproc_per_node 8 --master_port 12345 train.py --model lavt_one_xlm --dataset aihub_indoor_80 --model_id refcoco_indoor_80_uniq --batch-size 4 --lr 0.00005 --wd 1e-2 --swin_type base --pretrained_swin_weights ./pretrained_weights/swin_base_patch4_window12_384_22k.pth --epochs 40 --img_size 480 2>&1 | tee ./models/refcoco_indoor_80_uniq/output
 ```
 
 ## Test with AIHub Data
-제조환경 데이터 테스트 코드
+Indoor Data Test
 ```
-python test.py --model lavt_one_xlm --swin_type base --dataset aihub_manufact_80 --split test --resume ./checkpoints/model_best_refcoco_manufact_80_uniq_id.pth --workers 4 --ddp_trained_weights --window12 --img_size 480
+conda activate lavt
+
+python test.py --model lavt_one_xlm --swin_type base --dataset aihub_indoor_80 --split test --resume ./checkpoints/model_best_refcoco_indoor_80_uniq.pth --workers 4 --ddp_trained_weights --window12 --img_size 480 2>&1 | tee aihub_indoor_lavt_eval_log.txt 
 ```
 
 
