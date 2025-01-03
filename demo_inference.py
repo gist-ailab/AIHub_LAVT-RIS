@@ -1,4 +1,4 @@
-image_path = './demo/demo.jpg'
+image_path = './demo/demo.png'
 # sentence = 'the most handsome guy'
 sentence = 'middle guy'
 

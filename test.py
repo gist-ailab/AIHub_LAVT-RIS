@@ -133,11 +133,7 @@ def evaluate(model, data_loader, bert_model, device):
                 # pred_image.save(f'aihub_pred_vis/visualization_pred_{vis_counter}.jpg')
                 # gt_image.save(f'aihub_pred_vis/visualization_gt_{vis_counter}.jpg')
                 file_name = info['file_name'][0].split('.')[0]
-<<<<<<< HEAD
-                text_raw = info['text'][0][0]
-=======
                 text_raw = info['text'][0][0].replace('/', '')
->>>>>>> cf722cb10c2efd683d12e214ee5c20a7fd137321
                 pred_image = Image.fromarray(vis_pred)
                 gt_image = Image.fromarray(vis_gt)
                 try:
@@ -148,10 +144,6 @@ def evaluate(model, data_loader, bert_model, device):
                     gt_image.save(f'aihub_pred_vis/{file_name}_{text_raw[:15]}_gt.jpg')
                 vis_counter += 1
                 # print(info)
-<<<<<<< HEAD
-
-=======
->>>>>>> cf722cb10c2efd683d12e214ee5c20a7fd137321
 
 
             del image, target, sentences, attentions, output, output_mask
@@ -187,11 +179,8 @@ def computeIoU(pred_seg, gd_seg):
 
 
 def main(args):
-<<<<<<< HEAD
     print('Command: python test.py --model lavt_one_xlm --swin_type base --dataset aihub_manufact_80 --split test --resume ./checkpoints/model_best_refcoco_manufact_80_uniq_id.pth --workers 4 --ddp_trained_weights --window12 --img_size 480 2>&1 | tee aihub_manufact_lavt_eval_log.txt')
-=======
     print('Command: python test.py --model lavt_one_xlm --swin_type base --dataset aihub_indoor_80 --split test --resume ./checkpoints/model_best_refcoco_indoor_80_uniq.pth --workers 4 --ddp_trained_weights --window12 --img_size 480 2>&1 | tee aihub_indoor_ris_log.txt')
->>>>>>> cf722cb10c2efd683d12e214ee5c20a7fd137321
     import datetime
     now = datetime.datetime.now()
     print(now.strftime("%Y-%m-%d %H:%M:%S"))

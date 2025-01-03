@@ -1,9 +1,10 @@
-image_path = './demo/demo.jpg'
+image_path = './demo/demo.png'
 # sentence = 'the most handsome guy'
-sentence = 'middle guy'
+sentence = '초록색 물병을 잡아줘'
 
-weights = './checkpoints/refcoco.pth'
-device = 'cuda:0'
+# weights = './checkpoints/refcoco.pth'
+weights = './checkpoints/model_best_refcoco_indoor_80_uniq.pth'
+device = 'cuda'
 
 import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -28,7 +29,7 @@ img = image_transforms(img).unsqueeze(0)  # (1, 3, 480, 480)
 img = img.to(device)  # for inference (input)
 
 # pre-process the raw sentence
-from bert.tokenization_bert import BertTokenizer
+# from bert.tokenization_bert import BertTokenizer
 from transformers import AutoTokenizer, AutoModelForMaskedLM
 
 import torch
@@ -49,7 +50,7 @@ padded_sent_toks = padded_sent_toks.to(device)  # for inference (input)
 attention_mask = attention_mask.to(device)  # for inference (input)
 
 # initialize model and load weights
-from bert.modeling_bert import BertModel
+# from bert.modeling_bert import BertModel
 from lib import segmentation
 
 # construct a mini args class; like from a config file
@@ -61,11 +62,11 @@ class args:
     mha = ''
     fusion_drop = 0.0
 
-# args.model = 'lavt_one_xlm'
-args.model = 'lavt_one'
-args.ck_bert = 'bert-base-uncased'
-# single_model = segmentation.__dict__['lavt_one_xlm'](pretrained='', args=args)
-single_model = segmentation.__dict__['lavt_one'](pretrained='', args=args)
+args.model = 'lavt_one_xlm'
+# args.model = 'lavt_one'
+# args.ck_bert = 'bert-base-uncased'
+single_model = segmentation.__dict__['lavt_one_xlm'](pretrained='', args=args)
+# single_model = segmentation.__dict__['lavt_one'](pretrained='', args=args)
 single_model.to(device)
 # model_class = BertModel
 # single_bert_model = model_class.from_pretrained('bert-base-uncased')
@@ -75,7 +76,7 @@ single_bert_model = None
 
 checkpoint = torch.load(weights, map_location='cpu')
 # single_bert_model.load_state_dict(checkpoint['bert_model'])
-# single_model.load_state_dict(checkpoint['model'])
+single_model.load_state_dict(checkpoint['model'])
 model = single_model.to(device)
 # bert_model = single_bert_model.to(device)
 
