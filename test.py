@@ -136,6 +136,8 @@ def evaluate(model, data_loader, bert_model, device):
                 text_raw = info['text'][0][0].replace('/', '')
                 pred_image = Image.fromarray(vis_pred)
                 gt_image = Image.fromarray(vis_gt)
+                if not os.path.exists('aihub_pred_vis'):
+                    os.makedirs('aihub_pred_vis')
                 try:
                     pred_image.save(f'aihub_pred_vis/{file_name}_{text_raw}_pred.jpg')
                     gt_image.save(f'aihub_pred_vis/{file_name}_{text_raw}_gt.jpg')
