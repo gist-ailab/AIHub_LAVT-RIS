@@ -88,7 +88,7 @@ def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vis
                 data = json.load(f)
 
             # Construct image file path from annotation file path
-            image_file = annotation_file.replace("/라벨링데이터/", "/원천데이터/")
+            image_file = annotation_file.replace("/labeling_data/", "/source_data/")
             image_file = image_file.replace("/annotation/", "/rgb/")
             image_file = image_file.replace(".json", ".png")
 
@@ -181,17 +181,14 @@ def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vis
 
 if __name__ == "__main__":
     # Set the input directories for annotations
-    input_dir_1 = "refer/data/라벨링데이터/real"
-    input_dir_2 = "refer/data/라벨링데이터/synthetic"
+    input_dir_1 = "refer/data/labeling_data/real"
+    input_dir_2 = "refer/data/labeling_data/synthetic"
 
     # Set the output file paths
-<<<<<<< HEAD
-    output_vision_file = "refer/data/aihub_refcoco_format/manufact_test_1120/instances.json"
-    output_referring_file = "refer/data/aihub_refcoco_format/manufact_test_1120/refs.p"
-=======
-    output_vision_file = "refer/data/aihub_refcoco_format/indoor_test_1121/instances.json"
-    output_referring_file = "refer/data/aihub_refcoco_format/indoor_test_1121/refs.p"
->>>>>>> cf722cb10c2efd683d12e214ee5c20a7fd137321
+    if not os.path.exists("refer/data/aihub_refcoco_format/indoor"):
+        os.makedirs("refer/data/aihub_refcoco_format/indoor")
+    output_vision_file = "refer/data/aihub_refcoco_format/indoor/instances.json"
+    output_referring_file = "refer/data/aihub_refcoco_format/indoor/refs.p"
 
     # Call the function to process the dataset
     split_annotations_for_dataset(input_dir_1, input_dir_2, output_vision_file, output_referring_file)
