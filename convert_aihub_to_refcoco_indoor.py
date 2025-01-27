@@ -6,6 +6,7 @@ import glob
 import shutil
 from tqdm import tqdm
 import csv
+import numpy as np
 
 # 카테고리 정의 (MANUFACT_CATEGORIES 또는 INDOOR_CATEGORIES 사용)
 MANUFACT_CATEGORIES = [
@@ -77,11 +78,17 @@ def split_annotations_for_dataset(input_base_dir_1, input_base_dir_2, output_vis
     valid_num = 0
     test_num = 0
 
-    # 'test' 스플릿만 처리
+    # random split
+    print("Splitting dataset into train, val, and test sets randomly...")
+    idx = 0
     for group_id, files in tqdm(group_annotation_files.items()):
-        split = 'test'  # 'test' 스플릿만 처리
-        if split != 'test':
-            continue  # 'test' 스플릿이 아닌 경우 스킵
+        
+        ### To preprocess 1% of the dataset
+        # idx += 1
+        # if idx%100 != 0:
+        #     continue
+
+        split = np.random.choice(['train', 'val', 'test'], p=[0.8, 0.1, 0.1])
 
         for annotation_file in files:
             with open(annotation_file, 'r', encoding='utf-8') as f:
